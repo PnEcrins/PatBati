@@ -1,5 +1,4 @@
 cache/*
 config/databases.yml
 log/*.*
-web/uploads/*
 sql/*.*
