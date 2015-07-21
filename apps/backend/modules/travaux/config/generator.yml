@@ -1,0 +1,41 @@
+generator:
+  class: sfMmwExtjsDoctrineGenerator
+  param:
+    model_class:           Travaux
+    theme:                 mmwExtjs
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          travaux
+    with_doctrine_route:     1
+
+    config:
+      actions:
+        _save: { credentials: save }
+      fields:
+        date_travaux:
+          label:  "Date des travaux"
+        autorisation:
+          label:  "Autorisation du parc"
+        subvention_pne:
+          label:  "Subvention accordée par le parc"
+        codenature:
+          label:  "Nature des travaux"
+        codeusage:
+          label:  "Nouvel usage"
+      list:
+        title: "Travaux"
+        pager:
+          caption: "Travaux"
+          empty_caption: "Pas de travaux"
+        display: [indexdemande, indextravaux, date_travaux, autorisation, subvention_pne, codenature, codeusage]
+        max_per_page: 15
+      filter:  ~
+      form:
+        display: [indexdemande, indextravaux, date_travaux, autorisation, subvention_pne, codenature, codeusage]
+      listform:
+        form:
+          title: "Description du travail"
+      edit:    ~
+      new:     ~

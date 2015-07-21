@@ -1,0 +1,25 @@
+.header{background:transparent url(../images/header.jpg) no-repeat scroll center top;
+height:149px;
+margin : 0 auto;}
+
+.header_title{line-height:23px; }
+
+.information{ align: center; font-size: 12px;}
+
+table { width:587px;}
+
+table td{ height:37px;}
+
+.typologie{ text-align: center;}
+
+table.center {margin-left:auto; margin-right:auto;}
+
+.picture{ text-align:center;}
+
+.center_header{text-align:center; font-weight: bold;}
+
+.equipements{align: left; margin:0 37px 0;}
+
+.button{text-align: center; margin: 50px 0 0;}
+
+

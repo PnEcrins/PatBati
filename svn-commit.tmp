@@ -1,0 +1,24 @@
+
+--Cette ligne, et les suivantes ci-dessous, seront ignorées--
+
+M    apps/backend/modules/identification/config/generator.yml
+M    apps/backend/modules/bib_finition/actions/actions.class.php
+M    apps/backend/modules/bib_meoeuvre/actions/actions.class.php
+M    apps/backend/modules/structures/actions/actions.class.php
+M    apps/backend/modules/second_oeuvre/actions/actions.class.php
+AM   web/js/mmwExtjs/images
+AM   web/js/mmwExtjs/lib
+AM   web/js/mmwExtjs/css
+M    web/js/mmwExtjs/base/identification.js
+A    sql
+AM   sql/bdd_complete.sql
+AM   sql/BDD_finale_(samax).sql
+AM   sql/20090401_ecrins.sql
+AM   sql/20090602_export.sql
+AM   sql/test_insert.txt
+AM   sql/schema_pat_bati_modified.sql
+AM   sql/20090504_ecrins.sql
+AM   sql/20090730_ecrins.sql
+AM   sql/PAT_BATI_CREATE_DATABASE.SQL
+AM   sql/bdd_insert.sql
+AM   sql/PAT_BATI_CREATE_DATABASE_v1.SQL

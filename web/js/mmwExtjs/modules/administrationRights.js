@@ -1,0 +1,1 @@
+hasAdministrationRights = true;

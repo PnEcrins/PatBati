@@ -1,0 +1,54 @@
+generator:
+  class: sfMmwExtjsDoctrineGenerator
+  param:
+    model_class:           Structures
+    theme:                 mmwExtjs
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          structures
+    with_doctrine_route:     1
+
+    config:
+      actions:
+        _save: { credentials: save }
+      fields:
+        codestructure:
+          label: "Structure"
+          sort: [structure, asc]
+        structure_rem:
+          label: "Structure remarquable"
+        codeconservation:
+          label: "Conservation"
+        codematge:
+          label: "Matériau principal"
+          sort: [matge, asc]
+        codemeo:
+          label: "Mise en oeuvre"
+          sort: [meoeuvre, asc]
+        info_structure:
+          label: "Commentaire"
+          height: 130
+          width : "'100%'"
+      list:
+        title: "Liste des structures"
+        pager:
+          caption: "Structures"
+          empty_caption: "Pas de structures"
+        display: [indexbatiment, indexstructure, codestructure]
+        max_per_page: 15
+        display_field: codestructure
+      filter:
+        display: [codestructure]
+      form:
+        display: [indexbatiment, indexstructure, codestructure, structure_rem, codeconservation, codematge, codemeo, info_structure]
+      listform:
+        form:
+          title: "Description de la structure"
+          width: 0.5
+          height: "'100%'"
+        list:
+          width: 0.25
+      edit:    ~
+      new:     ~

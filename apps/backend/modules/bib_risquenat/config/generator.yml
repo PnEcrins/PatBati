@@ -1,0 +1,24 @@
+generator:
+  class: sfMmwExtjsDoctrineGenerator
+  param:
+    model_class:           BibRisquenat
+    theme:                 mmwExtjs
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          bib_risquenat
+    with_doctrine_route:     1
+
+    config:
+      actions: ~
+      fields:  ~
+      list:    ~
+      filter:  ~
+      form:
+        display: [coderisque, risque]
+      listform:
+        form:
+          title: "Edition d\'un risque naturel"
+      edit:    ~
+      new:     ~

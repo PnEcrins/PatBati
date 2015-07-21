@@ -1,0 +1,40 @@
+generator:
+  class: sfMmwExtjsDoctrineGenerator
+  param:
+    model_class:           ElementsPaysagers
+    theme:                 mmwExtjs
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          elements_paysagers
+    with_doctrine_route:     1
+
+    config:
+      actions:
+        _save: { credentials: save }
+      fields:
+        codeep:
+          label: "Elément du paysage"
+        ep_rem:
+          label: "Elément remarquable"
+        codeconservation:
+          label: "Conservation"
+        info_ep:
+          label: "Commentaire"
+      list:
+        title: "Liste des éléments paysagers"
+        pager:
+          caption: "Eléments paysagers"
+          empty_caption: "Pas d\'éléments paysagers"
+        display: [indexbatiment, indexep, codeep, ep_rem, codeconservation, info_ep]
+        max_per_page: 15
+        display_field: codeep
+      filter:  ~
+      form:
+        display: [indexbatiment, indexep, codeep, ep_rem, codeconservation, info_ep]
+      listform:
+        form:
+          title: "Description de l\'élément paysager"
+      edit:    ~
+      new:     ~

@@ -1,0 +1,28 @@
+generator:
+  class: sfMmwExtjsDoctrineGenerator
+  param:
+    model_class:           BibEquipement
+    theme:                 mmwExtjs
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          bib_equipement
+    with_doctrine_route:     1
+
+    config:
+      actions: ~
+      fields:
+        codetypeequip:
+          label: "Catégorie"
+      list:
+      filter:  ~
+      form:
+        display: [codeequipement, equipement, codetypeequip]
+      listform:
+        form:
+          title: "Edition d\'un équipement"
+      edit:  ~
+      new:  ~
+      store:
+        sup_fields: [codetypeequip]

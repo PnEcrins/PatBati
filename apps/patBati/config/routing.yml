@@ -1,0 +1,38 @@
+enquetes:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Enquetes
+    module:               enquetes
+    prefix_path:          enquetes
+    column:               indexenquete
+    with_wildcard_routes: true
+
+illustration:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Illustration
+    module:               illustration
+    prefix_path:          illustration
+    column:               indexilustration
+    with_wildcard_routes: true
+
+identification:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Identification
+    module:               identification
+    prefix_path:          identification
+    column:               indexbatiment
+    with_wildcard_routes: true
+
+# default rules
+homepage:
+  url: /
+  param: { module: default, action: index }
+
+default_index:
+  url: /:module
+  param: { action: index }
+
+default:
+  url: /:module/:action/*

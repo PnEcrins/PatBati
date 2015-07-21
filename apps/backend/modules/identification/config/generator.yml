@@ -1,0 +1,121 @@
+generator:
+  class: sfMmwExtjsDoctrineGenerator
+  param:
+    model_class:           Identification
+    theme:                 mmwExtjs
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          identification
+    with_doctrine_route:     1
+
+    config:
+      actions:
+        _save: { credentials: save }
+      fields:
+        indexbatiment:
+          label: "Nouveau numéro"
+        ancienindexbatiment:
+          label: "Ancien numéro"
+        appelation:
+          label: "Appellation"
+        patrimonialite:
+          label: "Patrimonialité"
+          height : "'100%'"
+          width : "'100%'"
+        notepatri:
+          label: "Valeur patrimoniale"
+        codeclasse:
+          label: "Type architectural"
+          sort: [classe, asc]
+        codeconservation:
+          label: "Etat général"
+        proprietaire:
+          label: "Propriétaire(s)"
+        indivision:
+          label: "Bâtiment en indivision"
+        codeinsee:
+          label: "Commune"
+          sort: [commune, asc]
+        secteur_commune:
+          label: "Secteur"
+        lieu_dit:
+          label: "Lieu dit"
+          width: 325
+        cadastre:
+          label: "N° de parcelle du cadastre"
+        altitude:
+          label: "Altitude"
+        l2x:
+          label: "Coordonnée X"
+        l2y:
+          label: "Coordonnée Y"
+        denivelle:
+          label: "Dénivellé"
+        rel_protections_list:
+          label: "Règlementation"
+        codepem:
+          label: "Emplacement dans la pente"
+          sort: [pem, asc]
+        codefaitage:
+          label: "Orientation du faitage"
+          sort: [faitage, asc]
+        situationgeo:
+          label: "Situation géographique"
+          height: 150
+          width : "'95%'"
+        exposition:
+          label: "Exposition"
+        pente:
+          label: "Pente (en degrés)"
+        rel_risquenats_list:
+          label: "Evènements"
+        rel_masques_list:
+          label: "Masques"
+        rel_ident_perspectives_list:
+          label: "Perspectives"
+        fichier:
+          label: "Photo du bâtiment"
+        info_risquenat:
+          label: "Commentaire"
+          width: 450
+        info_masque:
+          label: "Commentaire"
+          width: 450
+        link_fiche_summary:
+          label: "Fiche-résumé"
+        link_fiche:
+          label: "Fiche"
+        remarques:
+          label: "Remarques"
+          height: 200
+          width : "'100%'"
+        date_update:
+          label: "Date de mise à jour"
+        valide:
+          label: "Validé"
+          renderer: function(value) { return scope.getRecordCheckboxDisplayImage(value); }
+      list:
+        title: "Liste des bâtiments"
+        display: [valide, indexbatiment, appelation, codeclasse, notepatri, codeconservation, codeinsee, secteur_commune, link_fiche_summary, link_fiche, date_update]
+        max_per_page: 500
+        display_field: appelation
+        sort: [date_update, desc]
+      filter:
+        display: [appelation]
+      form:
+        display:
+          0:
+            "Renseignements": [indexbatiment, ancienindexbatiment, appelation, notepatri, patrimonialite, codeclasse, proprietaire, indivision, rel_protections_list]
+            "Géographie": [codeinsee, lieu_dit, cadastre, l2x, l2y, altitude, denivelle]
+          1:
+            "Situation": [indexbatiment, codepem, codefaitage, situationgeo, exposition, pente]
+            "Contexte naturel": [rel_risquenats_list, info_risquenat, rel_masques_list, info_masque]  
+          2:
+            "Etat": [codeconservation, remarques]
+            "Perspectives": [rel_ident_perspectives_list]
+            "Inventaire du bâtiment": [valide]
+          3: []
+      edit:    ~
+      new:     ~

@@ -1,0 +1,41 @@
+generator:
+  class: sfMmwExtjsDoctrineGenerator
+  param:
+    model_class:           Demande
+    theme:                 mmwExtjs
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          demande
+    with_doctrine_route:     1
+
+    config:
+      actions:
+        _save: { credentials: save }
+      fields:
+        demandep:
+          label: "Demande de permis de construire"
+        date_demandep:
+          label: "Date de la demande"
+        autorisationp:
+          label: "Autorisation de permis de construire"
+        date_permis:
+          label: "Date du permis"
+        num_permis:
+          label: "N° du permis"
+      list:
+        title: "Demandes de permis"
+        pager:
+          caption: "Demandes de permis"
+          empty_caption: "Pas de demande de permis"
+        display: [indexbatiment, indexdemande, demandep, date_demandep, autorisationp, date_permis, num_permis]
+        max_per_page: 15
+      filter:  ~
+      form:
+        display: [indexbatiment, indexdemande, demandep, date_demandep, autorisationp, date_permis, num_permis]
+      listform:
+        form:
+          title: "Description de la demande"
+      edit:    ~
+      new:     ~

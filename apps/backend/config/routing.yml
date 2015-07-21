@@ -1,0 +1,404 @@
+documents:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Documents
+    module:               documents
+    prefix_path:          documents
+    column:               indexdocument
+    with_wildcard_routes: true
+
+export_batiments:
+  url:    /exportBatiments.xls
+  param:  {module: exportBatiments, action: index}
+
+export_batiments_travaux:
+  url:    /exportTravaux.xls
+  param:  {module: exportBatiments, action: travaux}
+
+bib_perspective:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                BibPerspective
+    module:               bib_perspective
+    prefix_path:          bib_perspective
+    column:               codeperspective
+    with_wildcard_routes: true
+
+bib_type_equipement:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                BibTypeEquipement
+    module:               bib_type_equipement
+    prefix_path:          bib_type_equipement
+    column:               codetypeequip
+    with_wildcard_routes: true
+
+bib_type_so:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                BibTypeSo
+    module:               bib_type_so
+    prefix_path:          bib_type_so
+    column:               codetypeso
+    with_wildcard_routes: true
+
+travaux:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Travaux
+    module:               travaux
+    prefix_path:          travaux
+    column:               indextravaux
+    with_wildcard_routes: true
+
+structures:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Structures
+    module:               structures
+    prefix_path:          structures
+    column:               indexstructure
+    with_wildcard_routes: true
+
+second_oeuvre:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                SecondOeuvre
+    module:               second_oeuvre
+    prefix_path:          second_oeuvre
+    column:               indexso
+    with_wildcard_routes: true
+
+rel_structures_matfins:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                RelStructuresMatfins
+    module:               rel_structures_matfins
+    prefix_path:          rel_structures_matfins
+    column:               Array
+    with_wildcard_routes: true
+
+rel_masque:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                RelMasque
+    module:               rel_masque
+    prefix_path:          rel_masque
+    column:               Array
+    with_wildcard_routes: true
+
+illustration:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Illustration
+    module:               illustration
+    prefix_path:          illustration
+    column:               indexilustration
+    with_wildcard_routes: true
+
+identification:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Identification
+    module:               identification
+    prefix_path:          identification
+    column:               indexbatiment
+    with_wildcard_routes: true
+
+equipements:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Equipements
+    module:               equipements
+    prefix_path:          equipements
+    column:               indexequipement
+    with_wildcard_routes: true
+
+enquetes:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Enquetes
+    module:               enquetes
+    prefix_path:          enquetes
+    column:               indexenquete
+    with_wildcard_routes: true
+
+elements_paysagers:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                ElementsPaysagers
+    module:               elements_paysagers
+    prefix_path:          elements_paysagers
+    column:               indexep
+    with_wildcard_routes: true
+
+demande:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Demande
+    module:               demande
+    prefix_path:          demande
+    column:               indexdemande
+    with_wildcard_routes: true
+
+bib_usage:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                BibUsage
+    module:               bib_usage
+    prefix_path:          bib_usage
+    column:               codeusage
+    with_wildcard_routes: true
+
+bib_structure:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                BibStructure
+    module:               bib_structure
+    prefix_path:          bib_structure
+    column:               codestructure
+    with_wildcard_routes: true
+
+bib_so:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                BibSo
+    module:               bib_so
+    prefix_path:          bib_so
+    column:               codeso
+    with_wildcard_routes: true
+
+bib_secteur:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                BibSecteur
+    module:               bib_secteur
+    prefix_path:          bib_secteur
+    column:               codesecteur
+    with_wildcard_routes: true
+
+bib_risquenat:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                BibRisquenat
+    module:               bib_risquenat
+    prefix_path:          bib_risquenat
+    column:               coderisque
+    with_wildcard_routes: true
+
+bib_protection:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                BibProtection
+    module:               bib_protection
+    prefix_path:          bib_protection
+    column:               codeprotection
+    with_wildcard_routes: true
+
+bib_personnes:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                BibPersonnes
+    module:               bib_personnes
+    prefix_path:          bib_personnes
+    column:               codepersonne
+    with_wildcard_routes: true
+
+bib_notepatri:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                BibNotepatri
+    module:               bib_notepatri
+    prefix_path:          bib_notepatri
+    column:               indexnotepatri
+    with_wildcard_routes: true
+
+bib_nature:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                BibNature
+    module:               bib_nature
+    prefix_path:          bib_nature
+    column:               codenature
+    with_wildcard_routes: true
+
+bib_meoeuvre:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                BibMeoeuvre
+    module:               bib_meoeuvre
+    prefix_path:          bib_meoeuvre
+    column:               codemeo
+    with_wildcard_routes: true
+
+bib_materiaux_ge:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                BibMateriauxGe
+    module:               bib_materiaux_ge
+    prefix_path:          bib_materiaux_ge
+    column:               codematge
+    with_wildcard_routes: true
+
+bib_materiaux_fins:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                BibMateriauxFins
+    module:               bib_materiaux_fins
+    prefix_path:          bib_materiaux_fins
+    column:               codematfins
+    with_wildcard_routes: true
+
+bib_masque:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                BibMasque
+    module:               bib_masque
+    prefix_path:          bib_masque
+    column:               codemasque
+    with_wildcard_routes: true
+
+bib_implantation:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                BibImplantation
+    module:               bib_implantation
+    prefix_path:          bib_implantation
+    column:               codepem
+    with_wildcard_routes: true
+
+bib_illustration:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                BibIllustration
+    module:               bib_illustration
+    prefix_path:          bib_illustration
+    column:               codeillustration
+    with_wildcard_routes: true
+
+bib_finition:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                BibFinition
+    module:               bib_finition
+    prefix_path:          bib_finition
+    column:               codefinition
+    with_wildcard_routes: true
+
+bib_faitage:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                BibFaitage
+    module:               bib_faitage
+    prefix_path:          bib_faitage
+    column:               codefaitage
+    with_wildcard_routes: true
+
+bib_exposition:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                BibExposition
+    module:               bib_exposition
+    prefix_path:          bib_exposition
+    column:               indexexposition
+    with_wildcard_routes: true
+
+bib_equipement:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                BibEquipement
+    module:               bib_equipement
+    prefix_path:          bib_equipement
+    column:               codeequipement
+    with_wildcard_routes: true
+
+bib_element_paysager:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                BibElementPaysager
+    module:               bib_element_paysager
+    prefix_path:          bib_element_paysager
+    column:               codeep
+    with_wildcard_routes: true
+
+bib_conservation:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                BibConservation
+    module:               bib_conservation
+    prefix_path:          bib_conservation
+    column:               codeconservation
+    with_wildcard_routes: true
+
+bib_commune:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                BibCommune
+    module:               bib_commune
+    prefix_path:          bib_commune
+    column:               codeinsee
+    with_wildcard_routes: true
+
+bib_classe_archi:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                BibClasseArchi
+    module:               bib_classe_archi
+    prefix_path:          bib_classe_archi
+    column:               codeclasse
+    with_wildcard_routes: true
+
+bib_canton:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                BibCanton
+    module:               bib_canton
+    prefix_path:          bib_canton
+    column:               codecanton
+    with_wildcard_routes: true
+
+
+sf_guard_signin:
+  url:   /login
+  param: { module: sfGuardAuth, action: signin }
+
+sf_guard_signout:
+  url:   /logout
+  param: { module: sfGuardAuth, action: signout }
+
+sf_guard_password:
+  url:   /request_password
+  param: { module: sfGuardAuth, action: password }
+
+summary:
+  url:   /summary/:id
+  param: { module: identification, action: summary }
+  requirements:
+    id: \d+
+    sf_method: [get]
+
+export_synthese:
+  url: /export/synthese/:id
+  param: { module: export, action: synthese}
+  requirements:
+    id: \d+
+    sf_method: [get]
+
+export_complete:
+  url: /export/complete/:id
+  param: { module: export, action: complete}
+  requirements:
+    id: \d+
+    sf_method: [get]
+
+# default rules
+homepage:
+  url: /
+  param: { module: helper, action: index }
+
+default_index:
+  url: /:module
+  param: { action: index }
+
+default:
+  url: /:module/:action/*

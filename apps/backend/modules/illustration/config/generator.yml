@@ -1,0 +1,53 @@
+generator:
+  class: sfMmwExtjsDoctrineGenerator
+  param:
+    model_class:           Illustration
+    theme:                 mmwExtjs
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          illustration
+    with_doctrine_route:     1
+
+    config:
+      actions:
+        _save: { credentials: save }
+      fields:
+        codeillustration:
+          label: "Type d\'illustration"
+          sort: [ordre_illustration, asc]
+        codepersonne:
+          label: "Auteur"
+          sort: [personne, asc]
+        date_illustration:
+          label: "Date"
+          format: "'d M Y'"
+        fichier_source:
+          label: "Fichier source"
+        list_thumb:
+          label: "Aperçu"
+      list:
+        display_field: codeillustration
+        fields: 
+          codeillustration:
+            sortable: false
+        title: "Liste des illustrations"
+        pager:
+          caption: "Illustrations"
+          empty_caption: "Pas d\'illustrations"
+        remotesort: sortByOrdreIllustration
+        display:
+          [ indexbatiment, indexilustration, codeillustration, _list_thumb ]
+      filter:  ~
+      form:
+        fields:
+          date_illustration:
+            format: "'d M Y'"
+        display:
+          [ indexbatiment, indexilustration, codeillustration, codepersonne, date_illustration, fichier_source ]
+      listform:
+        form:
+          title: "Description de l\'illustration"
+      edit:    ~
+      new:     ~

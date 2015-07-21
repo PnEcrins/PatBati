@@ -1,0 +1,18 @@
+# default values
+dev:
+  sf_combine_filter_plugin:
+    enabled: true
+
+all:
+  images_upload_dir: "uploads/images/"
+  document_upload_dir: "uploads/documents/"
+  sf_guard_plugin:
+    success_signin_url: "@homepage"
+  sf_combine_filter_plugin:
+    js_exclude_files: [/js/mmwExtjs/modules/helper.js]
+    
+    enabled: true
+    javascripts: false
+    stylesheets: false
+    minimize_js: true
+    minimize_css: true

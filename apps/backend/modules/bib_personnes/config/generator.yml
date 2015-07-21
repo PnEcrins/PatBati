@@ -1,0 +1,24 @@
+generator:
+  class: sfMmwExtjsDoctrineGenerator
+  param:
+    model_class:           BibPersonnes
+    theme:                 mmwExtjs
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          bib_personnes
+    with_doctrine_route:     1
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        display_field: personne
+      filter:  ~
+      form:    ~
+      listform:
+        form:
+          title: "Edition d\'une personne"
+      edit:    ~
+      new:     ~

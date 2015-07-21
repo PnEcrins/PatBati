@@ -1,0 +1,21 @@
+generator:
+  class: sfMmwExtjsDoctrineGenerator
+  param:
+    model_class:           BibStructure
+    theme:                 mmwExtjs
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          bib_structure
+    with_doctrine_route:     1
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        display_field: structure
+      filter:  ~
+      form:    ~
+      edit:    ~
+      new:     ~

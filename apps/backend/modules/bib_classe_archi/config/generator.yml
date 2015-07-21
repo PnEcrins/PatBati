@@ -1,0 +1,21 @@
+generator:
+  class: sfMmwExtjsDoctrineGenerator
+  param:
+    model_class:           BibClasseArchi
+    theme:                 mmwExtjs
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          bib_classe_archi
+    with_doctrine_route:     1
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        display_field: classe
+      filter:  ~
+      form:    ~
+      edit:    ~
+      new:     ~

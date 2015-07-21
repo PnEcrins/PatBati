@@ -1,0 +1,68 @@
+= sfFirePHP plugin =     
+
+== Overview ==
+
+This plugin integrates FirePHP into symfony.
+
+According to the [http://www.firephp.org firephp web site]:
+
+"FirePHP enables you to print to your Firebug Console using a simple PHP function call.
+
+What makes FirePHP different?
+
+All data is sent via a set of X-FirePHP-Data response headers. This means that the debugging data will not interfere with the content on your page. Thus FirePHP is ideally suited for AJAX development."
+
+
+== Installation ==
+
+{{{
+#!sh
+php symfony plugin:install sfFirePHPPlugin
+}}}
+
+
+== Upgrade plugins ==
+
+{{{
+#!sh
+php symfony plugin:upgrade -r=1.1.7 sfFirePHPPlugin
+}}}
+
+
+== Uninstallation ==
+
+{{{
+#!sh
+php symfony plugin:uninstall sfFirePHPPlugin
+}}}
+
+
+=== Requirements ===
+
+Client Side:
+
+	- [http://www.getfirefox.com/ Firefox] - Only Works with the Firefox browser :)
+	- [http://www.getfirebug.com/ Firebug] - Of course you need firebug.
+	- [http://www.firephp.org/ FirePHP] - Also install the firephp extension for firefox.
+	
+== Usage ==
+
+You can check a FirePHP Tutorial [http://www.firephp.org/Wiki/Main/QuickStart here]:                          
+	
+After you have Firefox installed, with the firebug and firephp extensions, you will need to install the `sfFirePHPPlugin`.
+
+Then inside a template you can do something like:
+
+{{{
+<?php $firephp = sfFirePHP::getInstance(true); ?>
+<?php $firephp->fb('Hello World'); // Defaults to FirePHP::LOG ?>
+<?php $firephp->fb('Log message'  ,FirePHP::LOG); ?>
+<?php $firephp->fb('Info message' ,FirePHP::INFO); ?>
+<?php $firephp->fb('Warn message' ,FirePHP::WARN);  ?>
+<?php $firephp->fb('Error message',FirePHP::ERROR); ?>
+}}}
+
+When you load the page, those messages will appear on your firebug console.
+== License ==
+
+For the full copyright and license information, please view the LICENSE file that was distributed with this source code.

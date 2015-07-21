@@ -1,0 +1,47 @@
+generator:
+  class: sfMmwExtjsDoctrineGenerator
+  param:
+    model_class:           SecondOeuvre
+    theme:                 mmwExtjs
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          second_oeuvre
+    with_doctrine_route:     1
+
+    config:
+      actions:
+        _save: { credentials: save }
+      fields:
+        codetypeso:
+          label: "Catégorie"
+        codeso:
+          label: "Elément"
+        so_rem:
+          label: "Remarquable"
+        codeconservation:
+          label: "Conservation"
+        info_so:
+          label: "Commentaire"
+          height: 170
+          width: "'100%'"
+      list:
+        title: "Liste des éléments"
+        pager:
+          caption: "Eléments"
+          empty_caption: "Pas d\'éléments"
+        display: [indexbatiment, indexso, codeso]
+        max_per_page: 15
+        display_field: codeso
+      filter:  ~
+      form:
+        display: [indexbatiment, indexso, codetypeso, codeso, so_rem, codeconservation, info_so]
+      listform:
+        form:
+          title: "Description de l\'élément"
+          width: 0.5
+        list:
+          width: 0.25
+      edit:    ~
+      new:     ~

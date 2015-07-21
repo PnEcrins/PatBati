@@ -1,0 +1,2 @@
+summarySuccess:
+  stylesheets: [my_style.css, my_style: {media:print}, print: {media: print}]

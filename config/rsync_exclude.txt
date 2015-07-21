@@ -1,0 +1,6 @@
+.svn
+/cache/*
+/log/*
+/web/*_dev.php
+svn-commit.tmp
+svnup.sh

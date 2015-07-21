@@ -1,0 +1,21 @@
+generator:
+  class: sfMmwExtjsDoctrineGenerator
+  param:
+    model_class:           BibCanton
+    theme:                 mmwExtjs
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          bib_canton
+    with_doctrine_route:     1
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        display_field: canton
+      filter:  ~
+      form:    ~
+      edit:    ~
+      new:     ~

@@ -1,0 +1,24 @@
+generator:
+  class: sfMmwExtjsDoctrineGenerator
+  param:
+    model_class:           BibMasque
+    theme:                 mmwExtjs
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          bib_masque
+    with_doctrine_route:     1
+
+    config:
+      actions:
+      fields:  ~
+      list:
+      filter:  ~
+      form:
+        display: [codemasque, masque]
+      listform:
+        form:
+          title: "Edition du masque"
+      edit:    ~
+      new:     ~

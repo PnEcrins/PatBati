@@ -1,0 +1,33 @@
+generator:
+  class: sfMmwExtjsDoctrineGenerator
+  param:
+    model_class:           BibElementPaysager
+    theme:                 mmwExtjs
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          bib_element_paysager
+    with_doctrine_route:     1
+
+    config:
+      actions: ~
+      fields:
+        naturels_construits:
+          label: "Naturels construits"
+      list: ~
+#        display_field: elements_paysagers
+      filter:  ~
+      form: 
+      listform:
+        form:
+          display: [naturels_construits]
+          title: "Edition d\'un élément paysager"
+        fields:
+          naturels_construits:
+            label: "coucou form"
+            extjs:
+              height: 20
+              width: 300
+      edit:    ~
+      new:     ~

@@ -1,0 +1,10 @@
+dev: ~
+test: ~
+all:
+  doctrine:
+    class: sfDoctrineDatabase
+    param:
+      dsn: 'pgsql:host=localhost;dbname=patbatidb'
+      username: myuser 
+      password: mypass 
+      phptype: pgsql

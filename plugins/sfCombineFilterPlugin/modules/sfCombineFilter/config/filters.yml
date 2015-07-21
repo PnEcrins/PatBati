@@ -1,0 +1,16 @@
+rendering:  ~
+web_debug:
+  enabled:  off
+security:   ~
+# don't forget to put all your custom filters here and switch them off
+sf_google_analytics_plugin:
+  enabled:  off
+cache:
+  enabled:  off
+common:
+  enabled:  off
+sfCombineFilter:
+  enabled:  off
+flash:
+  enabled:  off
+execution:  ~

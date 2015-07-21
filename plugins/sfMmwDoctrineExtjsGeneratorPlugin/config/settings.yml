@@ -1,0 +1,32 @@
+all:
+  .settings:
+    mmw_extjs_javascript_dir: /js/mmwExtjs/
+    extjs_javascript_main: 
+      - ext-core3_0/ext-core-debug.js
+      - extjs3_0/adapter/ext/ext-base-debug.js
+      - extjs3_0/ext-all-debug.js
+      - lib/ext-basex/ext-basex.js
+      - ext-core3_0/lightbox/lightbox.js
+      - extjs3_0/examples/ux/gridfilters/menu/RangeMenu.js
+      - extjs3_0/examples/ux/gridfilters/menu/ListMenu.js
+      - extjs3_0/examples/ux/gridfilters/GridFilters.js
+      - extjs3_0/examples/ux/gridfilters/filter/Filter.js
+      - extjs3_0/examples/ux/gridfilters/filter/StringFilter.js
+      - extjs3_0/examples/ux/gridfilters/filter/DateFilter.js
+      - extjs3_0/examples/ux/gridfilters/filter/ListFilter.js
+      - extjs3_0/examples/ux/gridfilters/filter/NumericFilter.js
+      - extjs3_0/examples/ux/gridfilters/filter/BooleanFilter.js
+    mmw_extjs_javascript_main: 
+      - lib/mmwExtjs.js
+      - lib/mmwRowEditor.js
+      - lib/mmwMultiSelect.js
+      - lib/mmwItemSelector.js
+      - lib/mmwFileUploadField.js
+      - lib/mmwSearchField.js
+#      - lib/mmwDateTimePicker.js #Introuvable dans les sources. Utilisé ?
+    extjs_css_main: 
+      - extjs3_0/resources/css/ext-all.css
+      - ext-core3_0/lightbox/lightbox.css
+      - extjs3_0/examples/ux/gridfilters/css/GridFilters.js
+      - extjs3_0/examples/ux/gridfilters/css/RangeMenu.js
+    mmw_extjs_css_main: [css/mmwFile-upload.css, css/mmwRowEditor.css]

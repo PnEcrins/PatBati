@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database name="propel" package="lib.model" defaultIdMethod="native">
+
+  <table name="bib_canton">
+    <column name="codecanton" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="canton" type="VARCHAR" size="50" required="false" />
+  </table>
+
+  <table name="bib_classe_archi">
+    <column name="codeclasse" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="classe" type="VARCHAR" size="50" required="false" />
+  </table>
+
+  <table name="bib_commune">
+    <column name="codeinsee" type="CHAR" size="5" primaryKey="true" required="true" />
+    <column name="codecanton" type="VARCHAR" required="true" />
+    <foreign-key foreignTable="bib_canton">
+      <reference local="codecanton" foreign="codecanton" />
+    </foreign-key>
+    <column name="codesecteur" type="INTEGER" required="true" />
+    <foreign-key foreignTable="bib_secteur">
+      <reference local="codesecteur" foreign="codesecteur" />
+    </foreign-key>
+    <column name="commune" type="VARCHAR" size="30" required="false" />
+    <index name="i_fk_bib_commune_bib_canton">
+      <index-column name="codecanton" />
+    </index>
+    <index name="i_fk_bib_commune_bib_secteur">
+      <index-column name="codesecteur" />
+    </index>
+  </table>
+
+  <table name="bib_conservation">
+    <column name="codeconservation" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="conservation" type="VARCHAR" size="50" required="false" />
+  </table>
+
+  <table name="bib_element_paysager">
+    <column name="codeep" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="naturels_construits" type="CHAR" size="1" required="false" />
+    <column name="elements_paysagers" type="VARCHAR" size="50" required="false" />
+  </table>
+
+  <table name="bib_equipement">
+    <column name="codeequipement" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="equipement" type="VARCHAR" size="50" required="false" />
+    <column name="type_equipement" type="VARCHAR" size="50" required="false" />
+  </table>
+
+  <table name="bib_faitage">
+    <column name="codefaitage" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="faitage" type="VARCHAR" size="50" required="false" />
+  </table>
+
+  <table name="bib_finition">
+    <column name="codefinition" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="finition" type="VARCHAR" size="50" required="false" />
+  </table>
+
+  <table name="bib_illustration">
+    <column name="codeillustration" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="illustration" type="VARCHAR" size="50" required="true" />
+    <column name="ordre_illustration" type="INTEGER" required="false" />
+  </table>
+
+  <table name="bib_implantation">
+    <column name="codepem" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="pem" type="VARCHAR" size="10" required="false" />
+  </table>
+
+  <table name="bib_masque">
+    <column name="codemasque" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="masque" type="VARCHAR" size="50" required="false" />
+  </table>
+
+  <table name="bib_materiaux_fins">
+    <column name="codematfins" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="matfins" type="VARCHAR" size="50" required="false" />
+    <column name="type_matfins" type="VARCHAR" size="50" required="false" />
+  </table>
+
+  <table name="bib_materiaux_ge">
+    <column name="codematge" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="matge" type="VARCHAR" size="50" required="false" />
+  </table>
+
+  <table name="bib_meoeuvre">
+    <column name="codemeo" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="meoeuvre" type="VARCHAR" size="50" required="false" />
+  </table>
+
+  <table name="bib_nature">
+    <column name="codenature" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="nature" type="VARCHAR" size="50" required="false" />
+  </table>
+
+  <table name="bib_personnes">
+    <column name="codepersonne" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="personne" type="VARCHAR" size="50" required="true" />
+    <column name="descriptif" type="VARCHAR" size="100" required="false" />
+  </table>
+
+  <table name="bib_protection">
+    <column name="codeprotection" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="protection" type="VARCHAR" size="50" required="false" />
+  </table>
+
+  <table name="bib_risquenat">
+    <column name="coderisque" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="risque" type="VARCHAR" size="50" required="false" />
+  </table>
+
+  <table name="bib_secteur">
+    <column name="codesecteur" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="secteur" type="VARCHAR" size="12" required="false" />
+  </table>
+
+  <table name="bib_so">
+    <column name="codeso" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="second_oeuvre" type="VARCHAR" size="50" required="false" />
+    <column name="type_so" type="VARCHAR" size="50" required="false" />
+  </table>
+
+  <table name="bib_structure">
+    <column name="codestructure" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="structure" type="VARCHAR" size="50" required="false" />
+  </table>
+
+  <table name="bib_usage">
+    <column name="codeusage" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="usage" type="VARCHAR" size="50" required="false" />
+  </table>
+
+  <table name="demande">
+    <column name="indexdemande" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="indexbatiment" type="INTEGER" required="true" />
+    <foreign-key foreignTable="identification">
+      <reference local="indexbatiment" foreign="indexbatiment" />
+    </foreign-key>
+    <column name="demandep" type="BOOLEAN" required="false" />
+    <column name="autorisationp" type="BOOLEAN" required="false" />
+    <column name="date_permis" type="DATE" required="false" />
+    <column name="num_permis" type="VARCHAR" size="50" required="false" />
+    <column name="date_demandep" type="DATE" required="false" />
+    <index name="i_fk_demande_identification">
+      <index-column name="indexbatiment" />
+    </index>
+  </table>
+
+  <table name="elements_paysagers">
+    <column name="indexep" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="codeep" type="INTEGER" required="true" />
+    <foreign-key foreignTable="bib_element_paysager">
+      <reference local="codeep" foreign="codeep" />
+    </foreign-key>
+    <column name="codeconservation" type="INTEGER" required="true" />
+    <foreign-key foreignTable="bib_conservation">
+      <reference local="codeconservation" foreign="codeconservation" />
+    </foreign-key>
+    <column name="indexbatiment" type="INTEGER" required="true" />
+    <foreign-key foreignTable="identification">
+      <reference local="indexbatiment" foreign="indexbatiment" />
+    </foreign-key>
+    <column name="ep_rem" type="BOOLEAN" required="false" />
+    <index name="i_fk_elements_paysagers_bib_co">
+      <index-column name="codeconservation" />
+    </index>
+    <index name="i_fk_elements_paysagers_bib_el">
+      <index-column name="codeep" />
+    </index>
+    <index name="i_fk_elements_paysagers_identi">
+      <index-column name="indexbatiment" />
+    </index>
+  </table>
+
+  <table name="enquetes">
+    <column name="indexenquete" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="codepersonne" type="INTEGER" required="true" />
+    <foreign-key foreignTable="bib_personnes">
+      <reference local="codepersonne" foreign="codepersonne" />
+    </foreign-key>
+    <column name="indexbatiment" type="INTEGER" required="true" />
+    <foreign-key foreignTable="identification">
+      <reference local="indexbatiment" foreign="indexbatiment" />
+    </foreign-key>
+    <column name="date_enquete" type="DATE" required="false" />
+    <column name="date_redaction" type="DATE" required="false" />
+    <index name="i_fk_enquetes_bib_personnes">
+      <index-column name="codepersonne" />
+    </index>
+    <index name="i_fk_enquetes_identification">
+      <index-column name="indexbatiment" />
+    </index>
+  </table>
+
+  <table name="equipements">
+    <column name="indexequipement" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="codeequipement" type="INTEGER" required="true" />
+    <foreign-key foreignTable="bib_equipement">
+      <reference local="codeequipement" foreign="codeequipement" />
+    </foreign-key>
+    <column name="codeconservation" type="INTEGER" required="true" />
+    <foreign-key foreignTable="bib_conservation">
+      <reference local="codeconservation" foreign="codeconservation" />
+    </foreign-key>
+    <column name="indexbatiment" type="INTEGER" required="true" />
+    <foreign-key foreignTable="identification">
+      <reference local="indexbatiment" foreign="indexbatiment" />
+    </foreign-key>
+    <column name="equipement_rem" type="BOOLEAN" required="false" />
+    <index name="i_fk_equipements_bib_conservat">
+      <index-column name="codeconservation" />
+    </index>
+    <index name="i_fk_equipements_bib_equipemen">
+      <index-column name="codeequipement" />
+    </index>
+    <index name="i_fk_equipements_identificatio">
+      <index-column name="indexbatiment" />
+    </index>
+  </table>
+
+  <table name="identification">
+    <column name="indexbatiment" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="codepem" type="INTEGER" required="true" />
+    <foreign-key foreignTable="bib_implantation">
+      <reference local="codepem" foreign="codepem" />
+    </foreign-key>
+    <column name="codeclasse" type="INTEGER" required="true" />
+    <foreign-key foreignTable="bib_classe_archi">
+      <reference local="codeclasse" foreign="codeclasse" />
+    </foreign-key>
+    <column name="codefaitage" type="INTEGER" required="true" />
+    <foreign-key foreignTable="bib_faitage">
+      <reference local="codefaitage" foreign="codefaitage" />
+    </foreign-key>
+    <column name="codeinsee" type="CHAR" size="5" required="true" />
+    <foreign-key foreignTable="bib_commune">
+      <reference local="codeinsee" foreign="codeinsee" />
+    </foreign-key>
+    <column name="appelation" type="VARCHAR" size="50" required="false" />
+    <column name="indivision" type="BOOLEAN" required="false" />
+    <column name="proprietaire" type="VARCHAR" size="150" required="false" />
+    <column name="cadastre" type="VARCHAR" size="20" required="false" />
+    <column name="lieu_dit" type="VARCHAR" size="100" required="false" />
+    <column name="altitude" type="INTEGER" required="false" />
+    <column name="l2x" type="BIGINT" required="false" />
+    <column name="l2y" type="BIGINT" required="false" />
+    <column name="situationgeo" type="VARCHAR" size="50" required="false" />
+    <column name="denivelle" type="INTEGER" required="false" />
+    <column name="exposition" type="INTEGER" required="false" />
+    <foreign-key foreignTable="bib_exposition">
+      <reference local="exposition" foreign="indexexposition" />
+    </foreign-key>
+    <column name="pente" type="INTEGER" required="false" />
+    <column name="capacite" type="INTEGER" required="false" />
+    <column name="date_insert" type="TIMESTAMP" required="false" />
+    <column name="date_update" type="TIMESTAMP" required="false" />
+    <column name="bat_suppr" type="BOOLEAN" required="false" />
+    <column name="notepatri" type="INTEGER" required="false" />
+    <foreign-key foreignTable="bib_notepatri">
+      <reference local="notepatri" foreign="indexnotepatri" />
+    </foreign-key>
+    <column name="patrimonialite" type="VARCHAR" size="255" required="false" />
+    <column name="fichier" type="VARCHAR" size="100" required="false" />
+    <index name="i_fk_identification_bib_classe">
+      <index-column name="codeclasse" />
+    </index>
+    <index name="i_fk_identification_bib_commun">
+      <index-column name="codeinsee" />
+    </index>
+    <index name="i_fk_identification_bib_faitag">
+      <index-column name="codefaitage" />
+    </index>
+    <index name="i_fk_identification_bib_implan">
+      <index-column name="codepem" />
+    </index>
+    <index name="i_fk_identification_bib_exposi">
+      <index-column name="exposition" />
+    </index>
+    <index name="i_fk_identification_bib_notepa">
+      <index-column name="notepatri" />
+    </index>
+  </table>
+
+  <table name="bib_exposition">
+    <column name="indexexposition" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="nomexposition" type="VARCHAR" size="2" required="true" />
+  </table>
+
+  <table name="bib_notepatri">
+    <column name="indexnotepatri" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="valnotepatri" type="INTEGER" required="true" />
+  </table>
+
+  <table name="illustration">
+    <column name="indexilustration" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="codeillustration" type="INTEGER" required="true" />
+    <foreign-key foreignTable="bib_illustration">
+      <reference local="codeillustration" foreign="codeillustration" />
+    </foreign-key>
+    <column name="codepersonne" type="INTEGER" required="false" />
+    <foreign-key foreignTable="bib_personnes">
+      <reference local="codepersonne" foreign="codepersonne" />
+    </foreign-key>
+    <column name="indexbatiment" type="INTEGER" required="true" />
+    <foreign-key foreignTable="identification">
+      <reference local="indexbatiment" foreign="indexbatiment" />
+    </foreign-key>
+    <column name="indexajaris" type="BIGINT" required="false" />
+    <column name="date_illustration" type="DATE" required="false" />
+    <column name="vignette" type="VARCHAR" size="100" required="false" />
+    <column name="fichier_source" type="VARCHAR" size="100" required="false" />
+    <index name="i_fk_illustration_bib_illustra">
+      <index-column name="codeillustration" />
+    </index>
+    <index name="i_fk_illustration_bib_personne">
+      <index-column name="codepersonne" />
+    </index>
+    <index name="i_fk_illustration_identif">
+      <index-column name="indexbatiment" />
+    </index>
+  </table>
+
+  <table name="rel_masque">
+    <column name="codemasque" type="INTEGER" primaryKey="true" required="true" />
+    <foreign-key foreignTable="bib_masque">
+      <reference local="codemasque" foreign="codemasque" />
+    </foreign-key>
+    <column name="indexbatiment" type="INTEGER" primaryKey="true" required="true" />
+    <foreign-key foreignTable="identification">
+      <reference local="indexbatiment" foreign="indexbatiment" />
+    </foreign-key>
+    <index name="i_fk_rel_masque_bib_masque">
+      <index-column name="codemasque" />
+    </index>
+    <index name="i_fk_rel_masque_identification">
+      <index-column name="indexbatiment" />
+    </index>
+  </table>
+
+  <table name="rel_matfins_finition">
+    <column name="codematfins" type="INTEGER" primaryKey="true" required="true" />
+    <foreign-key foreignTable="bib_materiaux_fins">
+      <reference local="codematfins" foreign="codematfins" />
+    </foreign-key>
+    <column name="codefinition" type="INTEGER" primaryKey="true" required="true" />
+    <foreign-key foreignTable="bib_finition">
+      <reference local="codefinition" foreign="codefinition" />
+    </foreign-key>
+    <index name="i_fk_rel_matfins_finition_bib1">
+      <index-column name="codefinition" />
+    </index>
+    <index name="i_fk_rel_matfins_finition_bib_">
+      <index-column name="codematfins" />
+    </index>
+  </table>
+
+  <table name="rel_matge_meo">
+    <column name="codematge" type="INTEGER" primaryKey="true" required="true" />
+    <foreign-key foreignTable="bib_materiaux_ge">
+      <reference local="codematge" foreign="codematge" />
+    </foreign-key>
+    <column name="codemeo" type="INTEGER" primaryKey="true" required="true" />
+    <foreign-key foreignTable="bib_meoeuvre">
+      <reference local="codemeo" foreign="codemeo" />
+    </foreign-key>
+    <index name="i_fk_rel_matge_meo_bib_materia">
+      <index-column name="codematge" />
+    </index>
+    <index name="i_fk_rel_matge_meo_bib_meoeuvr">
+      <index-column name="codemeo" />
+    </index>
+  </table>
+
+  <table name="rel_protection">
+    <column name="indexbatiment" type="INTEGER" primaryKey="true" required="true" />
+    <foreign-key foreignTable="identification">
+      <reference local="indexbatiment" foreign="indexbatiment" />
+    </foreign-key>
+    <column name="codeprotection" type="INTEGER" primaryKey="true" required="true" />
+    <foreign-key foreignTable="bib_protection">
+      <reference local="codeprotection" foreign="codeprotection" />
+    </foreign-key>
+    <index name="i_fk_rel_protection_bib_protec">
+      <index-column name="codeprotection" />
+    </index>
+    <index name="i_fk_rel_protection_identifica">
+      <index-column name="indexbatiment" />
+    </index>
+  </table>
+
+  <table name="rel_recommande">
+    <column name="codeclasse" type="INTEGER" primaryKey="true" required="true" />
+    <foreign-key foreignTable="bib_classe_archi">
+      <reference local="codeclasse" foreign="codeclasse" />
+    </foreign-key>
+    <column name="codenature" type="INTEGER" primaryKey="true" required="true" />
+    <foreign-key foreignTable="bib_nature">
+      <reference local="codenature" foreign="codenature" />
+    </foreign-key>
+    <index name="i_fk_rel_recommande_bib_classe">
+      <index-column name="codeclasse" />
+    </index>
+    <index name="i_fk_rel_recommande_bib_nature">
+      <index-column name="codenature" />
+    </index>
+  </table>
+
+  <table name="rel_remplace">
+    <column name="indexstructure_ancien" type="INTEGER" primaryKey="true" required="true" />
+    <foreign-key foreignTable="structures">
+      <reference local="indexstructure_ancien" foreign="indexstructure" />
+    </foreign-key>
+    <column name="indexstructure_nouveau" type="INTEGER" primaryKey="true" required="true" />
+    <foreign-key foreignTable="structures">
+      <reference local="indexstructure_nouveau" foreign="indexstructure" />
+    </foreign-key>
+    <index name="i_fk_rel_remplace_structures">
+      <index-column name="indexstructure_ancien" />
+    </index>
+    <index name="i_fk_rel_remplace_structures_2">
+      <index-column name="indexstructure_nouveau" />
+    </index>
+  </table>
+
+  <table name="rel_risquenat">
+    <column name="indexbatiment" type="INTEGER" primaryKey="true" required="true" />
+    <foreign-key foreignTable="identification">
+      <reference local="indexbatiment" foreign="indexbatiment" />
+    </foreign-key>
+    <column name="coderisque" type="INTEGER" primaryKey="true" required="true" />
+    <foreign-key foreignTable="bib_risquenat">
+      <reference local="coderisque" foreign="coderisque" />
+    </foreign-key>
+    <index name="i_fk_rel_risquenat_bib_risquen">
+      <index-column name="coderisque" />
+    </index>
+    <index name="i_fk_rel_risquenat_identificat">
+      <index-column name="indexbatiment" />
+    </index>
+  </table>
+
+  <table name="rel_so_matfins">
+    <column name="indexso" type="INTEGER" primaryKey="true" required="true" />
+    <foreign-key foreignTable="second_oeuvre">
+      <reference local="indexso" foreign="indexso" />
+    </foreign-key>
+    <column name="codematfins" type="INTEGER" primaryKey="true" required="true" />
+    <foreign-key foreignTable="bib_materiaux_fins">
+      <reference local="codematfins" foreign="codematfins" />
+    </foreign-key>
+    <column name="codefinition" type="INTEGER" primaryKey="true" required="true" />
+    <foreign-key foreignTable="bib_finition">
+      <reference local="codefinition" foreign="codefinition" />
+    </foreign-key>
+    <index name="i_fk_rel_so_matfins_bib_finiti">
+      <index-column name="codefinition" />
+    </index>
+    <index name="i_fk_rel_so_matfins_bib_materi">
+      <index-column name="codematfins" />
+    </index>
+    <index name="i_fk_rel_so_matfins_second_oeu">
+      <index-column name="indexso" />
+    </index>
+  </table>
+
+  <table name="rel_structures_matfins">
+    <column name="indexstructure" type="INTEGER" primaryKey="true" required="true" />
+    <foreign-key foreignTable="structures">
+      <reference local="indexstructure" foreign="indexstructure" />
+    </foreign-key>
+    <column name="codematfins" type="INTEGER" primaryKey="true" required="true" />
+    <foreign-key foreignTable="bib_materiaux_fins">
+      <reference local="codematfins" foreign="codematfins" />
+    </foreign-key>
+    <column name="codefinition" type="INTEGER" primaryKey="true" required="true" />
+    <foreign-key foreignTable="bib_finition">
+      <reference local="codefinition" foreign="codefinition" />
+    </foreign-key>
+    <index name="i_fk_rel_structures_matfins_bib_finiti">
+      <index-column name="codefinition" />
+    </index>
+    <index name="i_fk_rel_structures_matfins_bi">
+      <index-column name="codefinition" />
+    </index>
+    <index name="i_fk_rel_structures_matfins_st">
+      <index-column name="indexstructure" />
+    </index>
+  </table>
+
+  <table name="second_oeuvre">
+    <column name="indexso" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="indexbatiment" type="INTEGER" required="true" />
+    <foreign-key foreignTable="identification">
+      <reference local="indexbatiment" foreign="indexbatiment" />
+    </foreign-key>
+    <column name="codeso" type="INTEGER" required="true" />
+    <foreign-key foreignTable="bib_so">
+      <reference local="codeso" foreign="codeso" />
+    </foreign-key>
+    <column name="codeconservation" type="INTEGER" required="true" />
+    <foreign-key foreignTable="bib_conservation">
+      <reference local="codeconservation" foreign="codeconservation" />
+    </foreign-key>
+    <column name="so_rem" type="BOOLEAN" required="false" />
+    <index name="i_fk_second_oeuvre_bib_conserv">
+      <index-column name="codeconservation" />
+    </index>
+    <index name="i_fk_second_oeuvre_bib_so">
+      <index-column name="codeso" />
+    </index>
+    <index name="i_fk_second_oeuvre_identificat">
+      <index-column name="indexbatiment" />
+    </index>
+  </table>
+
+  <table name="structures">
+    <column name="indexstructure" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="codeconservation" type="INTEGER" required="true" />
+    <foreign-key foreignTable="bib_conservation">
+      <reference local="codeconservation" foreign="codeconservation" />
+    </foreign-key>
+    <column name="codematge" type="INTEGER" required="true" />
+    <foreign-key foreignTable="bib_materiaux_ge">
+      <reference local="codematge" foreign="codematge" />
+    </foreign-key>
+    <column name="codestructure" type="INTEGER" required="true" />
+    <foreign-key foreignTable="bib_structure">
+      <reference local="codestructure" foreign="codestructure" />
+    </foreign-key>
+    <column name="codemeo" type="INTEGER" required="true" />
+    <foreign-key foreignTable="bib_meoeuvre">
+      <reference local="codemeo" foreign="codemeo" />
+    </foreign-key>
+    <column name="indexbatiment" type="INTEGER" required="true" />
+    <foreign-key foreignTable="identification">
+      <reference local="indexbatiment" foreign="indexbatiment" />
+    </foreign-key>
+    <column name="structure_rem" type="BOOLEAN" required="false" />
+    <index name="i_fk_structures_bib_conservati">
+      <index-column name="codeconservation" />
+    </index>
+    <index name="i_fk_structures_bib_materiaux_">
+      <index-column name="codematge" />
+    </index>
+    <index name="i_fk_structures_bib_meoeuvre">
+      <index-column name="codemeo" />
+    </index>
+    <index name="i_fk_structures_bib_structure">
+      <index-column name="codestructure" />
+    </index>
+    <index name="i_fk_structures_identification">
+      <index-column name="indexbatiment" />
+    </index>
+  </table>
+
+  <table name="travaux">
+    <column name="indextravaux" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
+    <column name="codeusage" type="INTEGER" required="true" />
+    <foreign-key foreignTable="bib_usage">
+      <reference local="codeusage" foreign="codeusage" />
+    </foreign-key>
+    <column name="codenature" type="INTEGER" required="true" />
+    <foreign-key foreignTable="bib_nature">
+      <reference local="codenature" foreign="codenature" />
+    </foreign-key>
+    <column name="indexdemande" type="INTEGER" required="true" />
+    <foreign-key foreignTable="demande">
+      <reference local="indexdemande" foreign="indexdemande" />
+    </foreign-key>
+    <column name="date_travaux" type="DATE" required="false" />
+    <column name="autorisation" type="BOOLEAN" required="false" />
+    <column name="subvention_pne" type="BIGINT" required="false" />
+    <index name="i_fk_travaux_bib_nature">
+      <index-column name="codenature" />
+    </index>
+    <index name="i_fk_travaux_bib_usage">
+      <index-column name="codeusage" />
+    </index>
+    <index name="i_fk_travaux_demande">
+      <index-column name="indexdemande" />
+    </index>
+  </table>
+
+</database>

@@ -1,0 +1,42 @@
+generator:
+  class: sfMmwExtjsDoctrineGenerator
+  param:
+    model_class:           Equipements
+    theme:                 mmwExtjs
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          equipements
+    with_doctrine_route:     1
+
+    config:
+      actions:
+        _save: { credentials: save }
+      fields:
+        codetypeequip:
+          label: "Catégorie"
+        codeequipement:
+          label: "Equipement"
+        equipement_rem:
+          label: "Equipement remarquable"
+        codeconservation:
+          label: "Conservation"
+        info_equip:
+          label: "Commentaire"
+      list:
+        title: "Liste des équipements"
+        pager:
+          caption: "Equipements"
+          empty_caption: "Pas d\'équipements"
+        display: [indexbatiment, indexequipement, codetypeequip, codeequipement, equipement_rem, codeconservation, info_equip]
+        max_per_page: 15
+        display_field: codeequipement
+      filter:  ~
+      form:
+        display: [indexbatiment, indexequipement, codetypeequip, codeequipement, equipement_rem, codeconservation, info_equip]
+      listform:
+        form:
+          title: "Description de l\'équipement"
+      edit:    ~
+      new:     ~

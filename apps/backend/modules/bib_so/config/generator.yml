@@ -1,0 +1,34 @@
+generator:
+  class: sfMmwExtjsDoctrineGenerator
+  param:
+    model_class:           BibSo
+    theme:                 mmwExtjs
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          bib_so
+    with_doctrine_route:     1
+
+    config:
+      actions: ~
+      fields:
+        codetypeso:
+          label: "Catégorie"
+        codeso:
+          label: "Elément"
+        second_oeuvre:
+          label: "Second oeuvre"
+      list:
+        display: [codeso, second_oeuvre, codetypeso]
+        display_field: second_oeuvre
+      filter:  ~
+      form:
+        display: [codeso, second_oeuvre, codetypeso]
+      listform:
+        form:
+          title: "Edition d\'un élément de second œuvre"
+      edit:    ~
+      new:     ~
+      store:
+        sup_fields: [codetypeso]

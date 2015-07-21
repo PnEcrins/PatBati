@@ -1,0 +1,38 @@
+generator:
+  class: sfMmwExtjsDoctrineGenerator
+  param:
+    model_class:           Enquetes
+    theme:                 mmwExtjs
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          enquetes
+    with_doctrine_route:     1
+
+    config:
+      actions: ~
+      fields:
+        codepersonne:
+          label: "Enquêteur"
+        date_enquete:
+          label: "Date de l\'enquête"
+        date_redaction:
+          label: "Date de rédaction de l\'enquête"
+      list:
+        title: "Liste des enquêtes"
+        pager:
+          caption: "Enquêtes"
+          empty_caption: "Pas d\'enquêtes"
+        display: [indexbatiment, indexenquete, codepersonne, date_enquete, date_redaction]
+        max_per_page: 15
+        display_field: date_enquete
+        sort: [date_redaction, desc]
+      filter:  ~
+      form:
+        display: [indexbatiment, indexenquete, codepersonne, date_enquete, date_redaction]
+      listform:
+        form:
+          title: "Description de l\'enquête"
+      edit:    ~
+      new:     ~

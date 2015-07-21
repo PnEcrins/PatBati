@@ -1,0 +1,44 @@
+generator:
+  class: sfMmwExtjsDoctrineGenerator
+  param:
+    model_class:           Documents
+    theme:                 mmwExtjs
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          documents
+    with_doctrine_route:     1
+
+    config:
+      actions:
+        _save: { credentials: save }
+      fields:
+        date_document:
+          label: "Date"
+          format: "'d M Y'"
+        fichier_source:
+          label: "Fichier source"
+      list:
+        display_field: fichier_source
+        fields: 
+          fichier_source:
+            sortable: false
+        title: "Liste des documents"
+        pager:
+          caption: "Documents"
+          empty_caption: "Pas de documents"
+        display:
+          [ indexbatiment, indexdocument, fichier_source ]
+      filter:  ~
+      form:
+        fields:
+          date_illustration:
+            format: "'d M Y'"
+        display:
+          [ indexbatiment, indexdocument, date_document, fichier_source ]
+      listform:
+        form:
+          title: "Description du document"
+      edit:    ~
+      new:     ~

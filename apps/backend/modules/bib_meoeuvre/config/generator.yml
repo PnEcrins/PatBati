@@ -1,0 +1,23 @@
+generator:
+  class: sfMmwExtjsDoctrineGenerator
+  param:
+    model_class:           BibMeoeuvre
+    theme:                 mmwExtjs
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          bib_meoeuvre
+    with_doctrine_route:     1
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        display_field: meoeuvre
+      filter:  ~
+      form:    ~
+      edit:    ~
+      new:     ~
+      store:
+        sup_fields: [codematgelist]
