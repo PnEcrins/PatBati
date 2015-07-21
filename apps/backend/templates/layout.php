@@ -8,7 +8,7 @@
   </head>
   <body>
 	<div id="header">
-		<h1>Parc national des Ecrins</h1>
+		<h1>PATRIMOINE BATI du parc national des Ecrins</h1>
 		<!--
 		<ul>
 			<li><a href="#" onclick="menu.showGestionBati()">Gestion des bâtiments</a></li>
@@ -16,7 +16,7 @@
 			<li><a href="#" onclick="menu.showGestionSO()">Gestion des éléments de second oeuvre</a></li>
 		</ul>
 		-->
-		<?php echo link_to('Déconnexion', '@sf_guard_signout');?>
+		<?php echo link_to('Déconnexion', '@logout');?>
 	</div><!--//end #header//-->
 	<?php echo $sf_content ?>
   </body>
