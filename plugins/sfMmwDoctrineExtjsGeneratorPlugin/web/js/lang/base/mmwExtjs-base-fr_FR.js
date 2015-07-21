@@ -9,7 +9,7 @@ mmw.i18nLocalLanguage = {
 		LoginRedirectMsgBoxWaitMsg: 'Vous allez être redirigé vers la page de connexion...'
 	},
 	FormPanel: {
-		SaveButtonText: 'Sauver',
+		SaveButtonText: 'Enregistrer',
 		SaveWaitMsg: 'Sauvegarde en cours...',
 		LoadingMsg: 'Chargement en cours',
 		SaveErrorTitle: 'Erreur',
