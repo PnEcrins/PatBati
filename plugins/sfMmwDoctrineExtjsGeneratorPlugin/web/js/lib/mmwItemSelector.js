@@ -35,7 +35,7 @@ Ext.ux.mmwItemSelector = Ext.extend(Ext.form.Field,  {
 	i18nNameSpace: mmw.i18nNameSpace('MultiSelect'),
 	
     hideNavIcons:false,
-    imagePath:"js/mmwExtjs/extjs3_0/examples/ux/images/",
+    imagePath:"js/mmwExtjs/extjs3_0/ux/images/",
     iconUp:"up2.gif",
     iconDown:"down2.gif",
     iconLeft:"left2.gif",
