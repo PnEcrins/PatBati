@@ -75,7 +75,7 @@ class Image
 
 class convertImageToThumb
 {
-	protected static
+	public static
 		$img = 'images/no-picture.jpg',
 		$predefinedSizes = array(
 	    	'bandeau' => array('height' => '150'),

@@ -94,7 +94,23 @@ class illustrationActions extends autoIllustrationActions
 
 		$this->dispatcher->notify(new sfEvent($this, 'admin.delete_object', array('object' => $this->getRoute()->getObject())));
 
-		unlink(sfConfig::get('app_images_upload_dir').$this->getRoute()->getObject()->getFichierSource());
+    //On récupère l'image source
+    $imgSource = $this->getRoute()->getObject()->getFichierSource();
+    //Ainsi que le dossier qui la contient
+    $uploadFolder = sfConfig::get('app_images_upload_dir');
+    
+    //On en déduit son nom est son extension
+    $filename = substr($imgSource, 0, (strrpos($imgSource, '.')));
+    $extension = substr(strrchr($imgSource, '.'), 1);
+
+    //On supprime l'image de base
+		unlink($uploadFolder.$imgSource);
+    //Puis pour chacune des tailles prédefinies à laquelle l'image a pu être redimensionnée
+    foreach(convertImageToThumb::$predefinedSizes as $suffix => $infos){
+      //On supprime aussi le bon fichier
+      unlink($uploadFolder.$filename."_".$suffix.".".$extension);
+    }
+    
 		$this->getRoute()->getObject()->delete();
 
 		//$this->getUser()->setFlash('notice', 'The item was deleted successfully.');
