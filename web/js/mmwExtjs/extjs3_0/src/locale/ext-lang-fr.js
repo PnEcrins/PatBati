@@ -11,7 +11,7 @@
  * updated to 2.2 by disizben (22 Sep 2008)
  */
 
-Ext.UpdateManager.defaults.indicatorText = '<div class="loading-indicator">En cours de chargement...</div>';
+Ext.UpdateManager.defaults.indicatorText = '<div class="loading-indicator">En cours de chargement…</div>';
 
 if(Ext.DataView){
    Ext.DataView.prototype.emptyText = "";
@@ -22,7 +22,7 @@ if(Ext.grid.GridPanel){
 }
 
 if(Ext.LoadMask){
-    Ext.LoadMask.prototype.msg = "En cours de chargement...";
+    Ext.LoadMask.prototype.msg = "En cours de chargement…";
 }
 
 Date.shortMonthNames = [
@@ -189,8 +189,14 @@ if(Ext.form.DateField){
 
 if(Ext.form.ComboBox){
    Ext.apply(Ext.form.ComboBox.prototype, {
-      loadingText       : "En cours de chargement...",
+      loadingText       : "En cours de chargement…",
       valueNotFoundText : undefined
+   });
+}
+
+if(Ext.form.BasicForm){
+   Ext.apply(Ext.form.BasicForm.prototype, {
+      waitTitle : "Veuillez patienter…"
    });
 }
 
