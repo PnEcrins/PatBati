@@ -1047,24 +1047,25 @@ mmw.GridPanel = Ext.extend(Ext.grid.GridPanel, {
     },
     
     getAndSetCredentials: function(grid) {
-	    Ext.Ajax.request({
-			async: false,
-			url: grid.getStore().sfObject.url+'/getCredentials',
-			success: function (response) {
-				x = Ext.decode( response.responseText );
-				grid.credentials = x.credentials;
-			},
-			failure: function () { 
-                          console.log('failure in getAndSetCredentials');
-                        }
-		});
+      Ext.Ajax.request({
+        async : false,
+        url : grid.getStore().sfObject.url + '/getCredentials',
+        success : function(response) {
+          var x = Ext.decode(response.responseText);
+          grid.credentials = x.credentials;
+        },
+        failure : function(e) {
+          console.warn('failure in getAndSetCredentials %o',e);
+        }
+      });
     },
     
     hasCredential: function(credential) {
-		if(typeof(this.credentials) != undefined ) {
-			this.getAndSetCredentials(this);		
-		};
-    	return this.credentials[credential];
+      if (Ext.isEmpty(this.credentials)) {
+        this.getAndSetCredentials(this);
+      }
+      return this.credentials[credential];
+
     },
     
     getLl: function(i18nKey, replacementValues, otherText){
@@ -1291,9 +1292,11 @@ mmw.GridPanel = Ext.extend(Ext.grid.GridPanel, {
         },
 
 		sortchange: function() {
-			this.getBottomToolbar().moveFirst();
-		}
+      if (this.getStore().isLoaded && this.getBottomToolbar().getPageData().activePage !== 1) {
+        this.getBottomToolbar().moveFirst();
+      }
     }
+  }
 });
 
 mmw.GridFormPanel = Ext.extend(mmw.FormPanel, {
