@@ -39,7 +39,7 @@ mmw.i18nLocalLanguage = {
 	},
 	GridRowEditor: {
 		ConfirmSaveMsg: 'Enregistrez ou annulez vos modifications',
-		SaveButtonText: 'Sauver',
+		SaveButtonText: 'Enregistrer',
 		CancelButtonText: 'Annuler'
 	},
 	MultiSelect: {

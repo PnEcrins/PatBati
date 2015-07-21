@@ -411,7 +411,8 @@ batimentGridPanel.getTopToolbar().add(
 	'-',
 	{
     xtype: 'button',
-    text: 'Exporter tous les bâtiments selectionnées',
+    text: 'Exporter les bâtiments',
+    tooltip : 'Exporter la liste des bâtiments sélectionnés',
     handler: function() {
       Ext.getBody().mask("Géneration du fichier Excel des bâtiments …");
   
@@ -433,7 +434,8 @@ batimentGridPanel.getTopToolbar().add(
 	'-',
 	{
 		xtype: 'button',
-		text: 'Exporter la partie travaux',
+		text: 'Exporter les travaux',
+        tooltip : 'Exporter la liste des travaux concernant les bâtiments sélectionnés',
 		handler: function() {
       Ext.getBody().mask("Géneration du fichier Excel des travaux …");
       
