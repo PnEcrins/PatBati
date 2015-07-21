@@ -142,14 +142,16 @@ var batimentGridPanel = new mmw.identificationGridPanel({
 	},
 	
 	doAdvancedSearch: function(form) {
-		var formValues = {};
-		formValues['codesecteur'] = form.get('codesecteur_combobox').getValue();
-		formValues['codeclasse'] = form.get('codeclasse_combobox').getValue();
-		formValues['codematge_spv'] = form.get('codematge_spv_combobox').getValue();
-		formValues['codematge_ch'] = form.get('codematge_ch_combobox').getValue();
-		formValues['codematge_co'] = form.get('codematge_co_combobox').getValue();
-		formValues['codeequipement'] = form.get('codeequipement_combobox').getValue();
-		formValues['codeperspective'] = form.get('codeperspective_combobox').getValue();
+
+    var formValues = {
+      'codesecteur' : form.get('codesecteur_combobox').getValue(),
+      'codeclasse' : form.get('codeclasse_combobox').getValue(),
+      'codematge_spv' : form.get('codematge_spv_combobox').getValue(),
+      'codematge_ch' : form.get('codematge_ch_combobox').getValue(),
+      'codematge_co' : form.get('codematge_co_combobox').getValue(),
+      'codeequipement' : form.get('codeequipement_combobox').getValue(),
+      'codeperspective' : form.get('codeperspective_combobox').getValue()
+    }; 
 		
 		// On sauvegarde les valeurs du formulaire: si la fenêtre des filtres est fermée, puis qu'on la rouvre, on pourra retrouver ces valeurs
 		batimentGridPanel.advancedSearchFormValues = formValues;
@@ -158,10 +160,10 @@ var batimentGridPanel = new mmw.identificationGridPanel({
 		
 		for (var key in formValues) {
 			if (!Ext.isEmpty(formValues[key])) {
-				store.addFilter(key, formValues[key])
+				store.addFilter(key, formValues[key]);
 			}
 			else {
-				store.removeFilter(key)
+				store.removeFilter(key);
 			}
 		}
 		
@@ -179,182 +181,184 @@ var batimentGridPanel = new mmw.identificationGridPanel({
     },
 
 	openAdvancedSearchWindow: function() {
-		var advancedSearchForm = new Ext.form.FormPanel({
-			frame: true,
-			items: [
-				{
-					xtype: 'combo',
-					name: 'identification_filter__codesecteur',
-					width: 250,
-					fieldLabel: 'Secteur',
-					itemId: 'codesecteur_combobox',
-					allowBlank: true,
-					store: new mmw.bib_secteurStore({autoLoad: true}),
-					displayField: mmw.baseSfBib_secteurObject.displayField,
-					valueField: mmw.baseSfBib_secteurObject.keyField,
-					triggerAction: 'all',
-					lastQuery: ''
-				},
-				{
-					xtype: 'combo',
-					name: 'identification_filter__codeclasse',
-					fieldLabel: 'Type architectural',
-					width: 250,
-					itemId: 'codeclasse_combobox',
-					allowBlank: true,
-					store: new mmw.bib_classe_archiStore({autoLoad: true}),
-					displayField: mmw.baseSfBib_classe_archiObject.displayField,
-					valueField: mmw.baseSfBib_classe_archiObject.keyField,
-					triggerAction: 'all',
-					lastQuery: ''
-				},
-				{
-					xtype: 'combo',
-					name: 'identification_filter__codematge_spv',
-					fieldLabel: 'Structure porteuse verticale',
-					width: 250,
-					itemId: 'codematge_spv_combobox',
-					allowBlank: true,
-					store: new mmw.bib_materiaux_geStore({autoLoad: true}),
-					displayField: mmw.baseSfBib_materiaux_geObject.displayField,
-					valueField: mmw.baseSfBib_materiaux_geObject.keyField,
-					triggerAction: 'all',
-					lastQuery: ''
-				},
-				{
-					xtype: 'combo',
-					name: 'identification_filter__codematge_ch',
-					fieldLabel: 'Charpente',
-					width: 250,
-					itemId: 'codematge_ch_combobox',
-					allowBlank: true,
-					store: new mmw.bib_materiaux_geStore({autoLoad: true}),
-					displayField: mmw.baseSfBib_materiaux_geObject.displayField,
-					valueField: mmw.baseSfBib_materiaux_geObject.keyField,
-					triggerAction: 'all',
-					lastQuery: ''
-				},
-				{
-					xtype: 'combo',
-					name: 'identification_filter__codematge_co',
-					fieldLabel: 'Couverture',
-					width: 250,
-					itemId: 'codematge_co_combobox',
-					allowBlank: true,
-					store: new mmw.bib_materiaux_geStore({autoLoad: true}),
-					displayField: mmw.baseSfBib_materiaux_geObject.displayField,
-					valueField: mmw.baseSfBib_materiaux_geObject.keyField,
-					triggerAction: 'all',
-					lastQuery: ''
-				},
-				{
-					xtype: 'combo',
-					name: 'identification_filter__codeequipement',
-					fieldLabel: 'Équipement',
-					width: 250,
-					itemId: 'codeequipement_combobox',
-					allowBlank: true,
-					store: new mmw.bib_equipementStore({
-					  autoLoad: true
-				  }),
-					displayField: mmw.baseSfBib_equipementObject.displayField,
-					valueField: mmw.baseSfBib_equipementObject.keyField,
-					triggerAction: 'all',
-					lastQuery: ''
-				},
-				{
-					xtype: 'combo',
-					name: 'identification_filter__codeperspective',
-					fieldLabel: 'Perspective',
-					width: 250,
-					itemId: 'codeperspective_combobox',
-					allowBlank: true,
-					store: new mmw.bib_perspectiveStore({autoLoad: true}),
-					displayField: mmw.baseSfBib_perspectiveObject.displayField,
-					valueField: mmw.baseSfBib_perspectiveObject.keyField,
-					triggerAction: 'all',
-					lastQuery: ''
-				},
-				{
-					xtype: 'spacer',
-					height: 20
-				},
-				{
-					xtype: 'panel',
-					layout: 'column',
-					items: [
-						{
-							xtype: 'button',
-							columnWidth: .33,
-							text: 'Appliquer',
-							handler: function(button, event) {
-								batimentGridPanel.doAdvancedSearch.createDelegate(batimentGridPanel, [button.ownerCt.ownerCt])();
-							}
-						},
-						{
-						    xtype: 'button',
-							columnWidth: .33,
-						    text: 'Vider le formulaire',
-							
-						    handler: function(button, event) {
-								button.ownerCt.ownerCt.getForm().reset();
-						    }
-						},
-						{
-						    xtype: 'button',
-							columnWidth: .33,
-						    text: 'Réinitialiser les filtres',
-							
-						    handler: function(button, event) {		
-								button.ownerCt.ownerCt.getForm().reset();
-								
-								batimentGridPanel.doAdvancedSearch.createDelegate(batimentGridPanel, [button.ownerCt.ownerCt])();
-						    }
-						}
-					]
-				}
-			],
-			
-			listeners: {
-				show: function(form) {
-					if (typeof(batimentGridPanel.advancedSearchFormValues) != 'undefined') {
-						form.getForm().setValues(batimentGridPanel.advancedSearchFormValues);
-						form.doLayout();
-					}
-				}
-			}
-		});
-		
-		advancedSearchForm.getForm().on('actioncomplete', function(form, action) {
-			if (typeof(batimentGridPanel.advancedSearchFormValues) != 'undefined') {
-				this.getForm().setValues(batimentGridPanel.advancedSearchFormValues);
-				this.doLayout();
-			}
-		}.createDelegate(advancedSearchForm));
-		
-		var win = new Ext.Window({
-            title: 'Recherche avancée',
-            closable: true,
-            width: 383,
-            height: 320,
-            plain: false,
-            layout: 'fit',
-			autoScroll: true,
-			resizable: false,
 
-            items: [advancedSearchForm],
-			
-			listeners: {
-				show: function() {
-					globalContentPanel.disable();
-				},
-				close: function() {
-					globalContentPanel.enable();
-				}
-			}
-        });
-		
-		win.show();
+    if (Ext.isEmpty(this.win)) {
+      var advancedSearchForm = new Ext.form.FormPanel({
+        frame : true,
+        items : [{
+          xtype : 'combo',
+          name : 'identification_filter__codesecteur',
+          width : 250,
+          fieldLabel : 'Secteur',
+          itemId : 'codesecteur_combobox',
+          allowBlank : true,
+          store : new mmw.bib_secteurStore({
+            autoLoad : true
+          }),
+          displayField : mmw.baseSfBib_secteurObject.displayField,
+          valueField : mmw.baseSfBib_secteurObject.keyField,
+          triggerAction : 'all',
+          lastQuery : ''
+        }, {
+          xtype : 'combo',
+          name : 'identification_filter__codeclasse',
+          fieldLabel : 'Type architectural',
+          width : 250,
+          itemId : 'codeclasse_combobox',
+          allowBlank : true,
+          store : new mmw.bib_classe_archiStore({
+            autoLoad : true
+          }),
+          displayField : mmw.baseSfBib_classe_archiObject.displayField,
+          valueField : mmw.baseSfBib_classe_archiObject.keyField,
+          triggerAction : 'all',
+          lastQuery : ''
+        }, {
+          xtype : 'combo',
+          name : 'identification_filter__codematge_spv',
+          fieldLabel : 'Structure porteuse verticale',
+          width : 250,
+          itemId : 'codematge_spv_combobox',
+          allowBlank : true,
+          store : new mmw.bib_materiaux_geStore({
+            autoLoad : true
+          }),
+          displayField : mmw.baseSfBib_materiaux_geObject.displayField,
+          valueField : mmw.baseSfBib_materiaux_geObject.keyField,
+          triggerAction : 'all',
+          lastQuery : ''
+        }, {
+          xtype : 'combo',
+          name : 'identification_filter__codematge_ch',
+          fieldLabel : 'Charpente',
+          width : 250,
+          itemId : 'codematge_ch_combobox',
+          allowBlank : true,
+          store : new mmw.bib_materiaux_geStore({
+            autoLoad : true
+          }),
+          displayField : mmw.baseSfBib_materiaux_geObject.displayField,
+          valueField : mmw.baseSfBib_materiaux_geObject.keyField,
+          triggerAction : 'all',
+          lastQuery : ''
+        }, {
+          xtype : 'combo',
+          name : 'identification_filter__codematge_co',
+          fieldLabel : 'Couverture',
+          width : 250,
+          itemId : 'codematge_co_combobox',
+          allowBlank : true,
+          store : new mmw.bib_materiaux_geStore({
+            autoLoad : true
+          }),
+          displayField : mmw.baseSfBib_materiaux_geObject.displayField,
+          valueField : mmw.baseSfBib_materiaux_geObject.keyField,
+          triggerAction : 'all',
+          lastQuery : ''
+        }, {
+          xtype : 'combo',
+          name : 'identification_filter__codeequipement',
+          fieldLabel : 'Équipement',
+          width : 250,
+          itemId : 'codeequipement_combobox',
+          allowBlank : true,
+          store : new mmw.bib_equipementStore({
+            autoLoad : true
+          }),
+          displayField : mmw.baseSfBib_equipementObject.displayField,
+          valueField : mmw.baseSfBib_equipementObject.keyField,
+          triggerAction : 'all',
+          lastQuery : ''
+        }, {
+          xtype : 'combo',
+          name : 'identification_filter__codeperspective',
+          fieldLabel : 'Perspective',
+          width : 250,
+          itemId : 'codeperspective_combobox',
+          allowBlank : true,
+          store : new mmw.bib_perspectiveStore({
+            autoLoad : true
+          }),
+          displayField : mmw.baseSfBib_perspectiveObject.displayField,
+          valueField : mmw.baseSfBib_perspectiveObject.keyField,
+          triggerAction : 'all',
+          lastQuery : ''
+        }, {
+          xtype : 'spacer',
+          height : 20
+        }, {
+          xtype : 'panel',
+          layout : 'column',
+          items : [{
+            xtype : 'button',
+            columnWidth : .33,
+            text : 'Appliquer',
+            handler : function(button, event) {
+              batimentGridPanel.doAdvancedSearch.createDelegate(batimentGridPanel, [button.ownerCt.ownerCt])();
+            }
+          }, {
+            xtype : 'button',
+            columnWidth : .33,
+            text : 'Vider le formulaire',
+
+            handler : function(button, event) {
+              button.ownerCt.ownerCt.getForm().reset();
+            }
+          }, {
+            xtype : 'button',
+            columnWidth : .33,
+            text : 'Réinitialiser les filtres',
+
+            handler : function(button, event) {
+              button.ownerCt.ownerCt.getForm().reset();
+
+              batimentGridPanel.doAdvancedSearch.createDelegate(batimentGridPanel, [button.ownerCt.ownerCt])();
+            }
+          }]
+        }],
+
+        listeners : {
+          show : function(form) {
+            if ( typeof (batimentGridPanel.advancedSearchFormValues) != 'undefined') {
+              form.getForm().setValues(batimentGridPanel.advancedSearchFormValues);
+              form.doLayout();
+            }
+          }
+        }
+      });
+
+      advancedSearchForm.getForm().on('actioncomplete', function(form, action) {
+        if ( typeof (batimentGridPanel.advancedSearchFormValues) != 'undefined') {
+          this.getForm().setValues(batimentGridPanel.advancedSearchFormValues);
+          this.doLayout();
+        }
+      }.createDelegate(advancedSearchForm));
+
+      this.win = new Ext.Window({
+        title : 'Recherche avancée',
+        closable : true,
+        width : 383,
+        height : 320,
+        plain : false,
+        layout : 'fit',
+        autoScroll : true,
+        resizable : false,
+        autoDestroy: false,
+        closeAction: 'hide',
+        items : [advancedSearchForm],
+        listeners : {
+          show : function() {
+            globalContentPanel.disable();
+          },
+          hide : function() {
+            globalContentPanel.enable();
+          }
+        }
+      });
+    }
+
+    this.win.show(); 
+
 	}
 });
 
@@ -406,20 +410,46 @@ batimentGridPanel.getTopToolbar().add(
 	},
 	'-',
 	{
-		xtype: 'button',
-		text: 'Exporter tous les batiments selectionnées',
-		handler: function() {
-//			setTimeout( "window.location.href = './exportBatiments.xls'", 0 );
-			window.open(batimentGridPanel.getExportUrl('exportBatiments.xls'),'_blank', null);
-		}
+    xtype: 'button',
+    text: 'Exporter tous les bâtiments selectionnées',
+    handler: function() {
+      Ext.getBody().mask("Géneration du fichier Excel des bâtiments …");
+  
+      //FileDownloader.load renvoi une promise
+      var p = FileDownloader.load({
+        url : './exportBatiments.xls',
+        format : 'xls',
+        filename : 'export_batiment_' + ((new Date()).format('d_m_Y'))
+      });
+      p.then(function() {
+        Ext.getBody().unmask();
+      });
+      p['catch'](function(e) {
+        Ext.getBody().unmask();
+        Ext.Msg.alert('Erreur', e);
+      });
+    }
 	},
 	'-',
 	{
 		xtype: 'button',
 		text: 'Exporter la partie travaux',
 		handler: function() {
-//			setTimeout( "window.location.href = './exportBatiments.xls'", 0 );
-			window.open(batimentGridPanel.getExportUrl('exportTravaux.xls'),'_blank', null);
+      Ext.getBody().mask("Géneration du fichier Excel des travaux …");
+      
+      //FileDownloader.load renvoi une promise
+      var p = FileDownloader.load({
+        url : batimentGridPanel.getExportUrl('exportTravaux.xls'),
+        format : 'xls',
+        filename : 'export_travaux_' + ((new Date()).format('d_m_Y'))
+      });
+      p.then(function() {
+        Ext.getBody().unmask();
+      });
+      p['catch'](function(e) {
+        Ext.getBody().unmask();
+        Ext.Msg.alert('Erreur', e);
+      }); 
 		}
 	}
 );
@@ -445,7 +475,7 @@ if (batimentGridPanel.hasCredential('save')) {
 		    xtype: 'button',
 		    text: batimentGridPanel.getLl('NewButtonText'),
 		    handler: function(){
-				batiContentPanel.addNewBatiment()
+				batiContentPanel.addNewBatiment();
 			}
 		},
 		{
@@ -574,7 +604,7 @@ mmw.batimentInfoTabs = Ext.extend(Ext.TabPanel, {
 			});
 			batimentInfoTabs.batimentPanel.topLeftPanel.getEl().update(topLeftContent);
 			batimentInfoTabs.batimentPanel.topLeftPanel.doLayout();
-		}
+		};
 		
 		var updateBandeau = function(result) {
 			// Définition du titre de la tab du bâtiment
@@ -583,7 +613,7 @@ mmw.batimentInfoTabs = Ext.extend(Ext.TabPanel, {
 			}
 		
 			/* TOP CENTER CONTENT */
-			var topCenterContent = '<div style="margin-top: 20px; line-height: 30px;">'
+			var topCenterContent = '<div style="margin-top: 20px; line-height: 30px;">';
 			
 			// Appelation
 			topCenterContent+= '<p>'+(result.data.identification__appelation || 'Pas d\'appelation')+'</p>';
@@ -594,7 +624,7 @@ mmw.batimentInfoTabs = Ext.extend(Ext.TabPanel, {
 			/* FIN TOP CENTER CONTENT */
 			
 			/* TOP RIGHT CONTENT */
-			var topRightContent = '<div style="margin-top: 20px; line-height: 30px;">'
+			var topRightContent = '<div style="margin-top: 20px; line-height: 30px;">';
 			
 			// Secteur
 			topRightContent+= '<p>'+(result.data.identification__secteur || 'Pas de secteur')+'</p>';
@@ -612,7 +642,7 @@ mmw.batimentInfoTabs = Ext.extend(Ext.TabPanel, {
 			batimentInfoTabs.batimentPanel.topCenterPanel.getEl().update(topCenterContent);
 			batimentInfoTabs.batimentPanel.topRightPanel.getEl().update(topRightContent);
 			batimentInfoTabs.batimentPanel.topPanel.doLayout();
-		}	
+		};
 		
         // tab renseignements
         var renseignementsFormPanel = new mmw.identificationFormPanel({
@@ -890,7 +920,7 @@ mmw.batimentInfoTabs = Ext.extend(Ext.TabPanel, {
 				}
 			}
 			return false;
-		}
+		};
 
 		var meoeuvresFilter = function(record, record_id, matge_value) {
 			var codeMatgeList = record.data.bib_meoeuvre__codematgelist;
@@ -903,7 +933,7 @@ mmw.batimentInfoTabs = Ext.extend(Ext.TabPanel, {
 				}
 			}
 			return false;
-		}
+		};
 
 		var addDoubleComboPanel = function(formPanel){
 			var formPrefix = formPanel.sfObject.singularName;
@@ -1039,11 +1069,11 @@ mmw.batimentInfoTabs = Ext.extend(Ext.TabPanel, {
 			formPanel.doLayout();
 
 			return staticIndex;
-		}
+		};
 	
 		var deleteDoubleComboPanel = function(formPanel, index){
 			formPanel.doubleCombosFieldset.remove(formPanel.doubleCombosFieldset.find('id', formPanel.sfObject.singularName+'_doubleComboPanel_'+index)[0]);
-		}
+		};
 		
 		var deleteAllDoubleComboPanels = function(formPanel) {
 			// On supprime tous les couples de champs (matfins, finition)
@@ -1053,7 +1083,7 @@ mmw.batimentInfoTabs = Ext.extend(Ext.TabPanel, {
 				}
 				formPanel.nbDoubleComboPanel = 0;
 			}
-		}
+		};
 		
 		var processMatfinsFinitionDoubleComboPanels = function(formPanel, result) {
 			// On supprime d'abord tous les doubleCombos existants
@@ -1081,7 +1111,7 @@ mmw.batimentInfoTabs = Ext.extend(Ext.TabPanel, {
 					comboCodefinition.setValue(data[comboCodefinition.itemId]);
 				}
 			}
-		}
+		};
 
 		var initMatfinsFinitionsDoubleComboPanelsForForm = function(formPanel) {
 			// On définit le bouton d'ajout d'une nouvelle relation
@@ -1117,7 +1147,7 @@ mmw.batimentInfoTabs = Ext.extend(Ext.TabPanel, {
 			formPanel.getForm().on('blank', function(){
 				deleteAllDoubleComboPanels(formPanel);
 			});
-		}
+		};
 
 		var initMatfinsFinitionsDoubleComboPanels = function(formPanel) {
 			if ((typeof(matFinsFinitionsRequestInitialized) != 'undefined') && (matFinsFinitionsRequestInitialized == true)) {
@@ -1154,7 +1184,7 @@ mmw.batimentInfoTabs = Ext.extend(Ext.TabPanel, {
 					}
 				});	
 			}
-		}
+		};
 		/* FIN PARTIE MATFINS / FINITION */
 
         // tab gros oeuvre
@@ -1745,11 +1775,11 @@ menu.showGestionBati = function() {
 		soContentPanel.hide();
 		batiContentPanel.show();
 	}
-}
+};
 
 menu.showGestionSO = function() {
 	if (soContentPanel.hidden == true) {
 		batiContentPanel.hide();
 		soContentPanel.show();
 	}
-}
+};
