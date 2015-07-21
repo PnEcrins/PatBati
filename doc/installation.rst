@@ -11,3 +11,6 @@ chmod 777 web/uploads/documents
 chmod 777 web/uploads/images
 chmod 777 web/uploads/pdf
 chmod 777 web/uploads/assets
+
+Copier le fichier config/databases.yml.sample en databases.yml
+Mettre à jour les paramètres d'accès à la base de données dans config/databases.yml
