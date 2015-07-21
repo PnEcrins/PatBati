@@ -1,6 +1,7 @@
 rendering: ~
 security:
   class: sfGuardBasicSecurityFilter
+  enabled: false
 
 # insert your own filters here
 

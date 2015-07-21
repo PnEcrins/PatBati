@@ -8,7 +8,7 @@
   </head>
   <body>
 	<div id="header">
-		<h1>PATRIMOINE BATI du parc national des Ecrins</h1>
+		<h1>Parc national des Ecrins</h1>
 		<!--
 		<ul>
 			<li><a href="#" onclick="menu.showGestionBati()">Gestion des bâtiments</a></li>

@@ -1,6 +1,6 @@
 prod:
   .settings:
-    logging_enabled:        off
+    logging_enabled:        on
     error_reporting:        <?php echo (E_ALL | E_STRICT)."\n" ?>
 
 dev:
@@ -19,10 +19,10 @@ test:
 
 all:
   .actions:
-    login_module:           sfGuardAuth   # To be called when a non-authenticated user
-    login_action:           signin     # Tries to access a secure page
+    login_module:           security   # To be called when a non-authenticated user
+    login_action:           login     # Tries to access a secure page
 
-    secure_module:          sfGuardAuth   # To be called when a user doesn't have
+    secure_module:          security   # To be called when a user doesn't have
     secure_action:          secure    # The credentials required for an action
   .settings:
     i18n:                   on       # Enable interface translation. Set to off if your application should not be translated.
@@ -38,7 +38,8 @@ all:
     lazy_cache_key:         on        # Delays creation of a cache key until after checking whether an action or partial is cacheable
 
     # Activated modules from plugins or from the symfony core
-    enabled_modules:        [default, sfCombineFilter, sfGuardUser, sfGuardAuth]
+    #enabled_modules:        [default, sfCombineFilter, sfGuardUser, sfGuardAuth]
+    enabled_modules:        [default, sfCombineFilter]
     logging_enabled:        on
     # Routing settings
     no_script_name:         on       # Enable the front controller name in generated URLs

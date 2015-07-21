@@ -1,6 +1,14 @@
 <?php
 class TRolesTable extends Doctrine_Table
 {
+  const CREDENTIAL_SAVE = 'save';
+  const CREDENTIAL_ADMIN = 'admin';
+  
+    public static $credentials = array(
+      2 => array(self::CREDENTIAL_SAVE),
+      6 => array(self::CREDENTIAL_SAVE,self::CREDENTIAL_ADMIN),
+    );
+  
     public static function identify($login, $pass)
     {
         $nb_role=Doctrine_Query::create()
@@ -43,6 +51,7 @@ class TRolesTable extends Doctrine_Table
 
         return $id_droit;
     }
+    
 
     public static function listObservateurs()
     {
