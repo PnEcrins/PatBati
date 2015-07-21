@@ -1048,7 +1048,7 @@ mmw.batimentInfoTabs = Ext.extend(Ext.TabPanel, {
 					columnWidth: 0.1,
 					items: [new Ext.Button({
 						cls: 'x-btn-icon',
-						icon: '../js/mmwExtjs/images/delete.png',
+						icon: 'js/mmwExtjs/images/delete.png',
 						handler: function(){
 							deleteDoubleComboPanel(formPanel, staticIndex);
 						}
