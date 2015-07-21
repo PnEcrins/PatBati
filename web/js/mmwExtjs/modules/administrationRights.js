@@ -1,1 +1,0 @@
-hasAdministrationRights = true;
