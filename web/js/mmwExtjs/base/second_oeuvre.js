@@ -38,8 +38,94 @@ mmw.second_oeuvreGridFormPanel = Ext.extend(mmw.GridFormPanel,{
 			    }],
 			itemsLists: [
 		[
-		{name:'second_oeuvre__indexbatiment--name',fieldLabel:mmw.getI18nLabel('second_oeuvre__indexbatiment', 'Indexbatiment'),width:250,itemId:'second_oeuvre__indexbatiment',allowBlank:false,xtype:'combo',store:new Ext.data.ArrayStore({sfObject: mmw.baseSfIdentificationObject, fields: [mmw.baseSfIdentificationObject.keyField, mmw.baseSfIdentificationObject.displayField]}),sfDatabaseMode:true,mode:'local',hiddenName:'second_oeuvre__indexbatiment',displayField:mmw.baseSfIdentificationObject.displayField,valueField:mmw.baseSfIdentificationObject.keyField,triggerAction:'all',lastQuery:''},{name:'second_oeuvre__indexso',fieldLabel:mmw.getI18nLabel('second_oeuvre__indexso', 'Indexso'),width:250,itemId:'second_oeuvre__indexso',allowBlank:true,xtype:'hidden'},{name:'second_oeuvre__codetypeso--name',fieldLabel:mmw.getI18nLabel('second_oeuvre__codetypeso', 'Catégorie'),width:250,itemId:'second_oeuvre__codetypeso',allowBlank:false,xtype:'combo',store:new Ext.data.ArrayStore({sfObject: mmw.baseSfBib_type_soObject, fields: [mmw.baseSfBib_type_soObject.keyField, mmw.baseSfBib_type_soObject.displayField]}),sfDatabaseMode:true,mode:'local',hiddenName:'second_oeuvre__codetypeso',displayField:mmw.baseSfBib_type_soObject.displayField,valueField:mmw.baseSfBib_type_soObject.keyField,triggerAction:'all',lastQuery:''},{name:'second_oeuvre__codeso--name',fieldLabel:mmw.getI18nLabel('second_oeuvre__codeso', 'Elément'),width:250,itemId:'second_oeuvre__codeso',allowBlank:false,xtype:'combo',store:new Ext.data.ArrayStore({sfObject: mmw.baseSfBib_soObject, fields: [mmw.baseSfBib_soObject.keyField, mmw.baseSfBib_soObject.displayField]}),sfDatabaseMode:true,mode:'local',hiddenName:'second_oeuvre__codeso',displayField:mmw.baseSfBib_soObject.displayField,valueField:mmw.baseSfBib_soObject.keyField,triggerAction:'all',lastQuery:''},{name:'second_oeuvre__so_rem',fieldLabel:mmw.getI18nLabel('second_oeuvre__so_rem', 'Remarquable'),width:250,itemId:'second_oeuvre__so_rem',allowBlank:true,xtype:'checkbox'},{name:'second_oeuvre__codeconservation--name',fieldLabel:mmw.getI18nLabel('second_oeuvre__codeconservation', 'Conservation'),width:250,itemId:'second_oeuvre__codeconservation',allowBlank:false,xtype:'combo',store:new Ext.data.ArrayStore({sfObject: mmw.baseSfBib_conservationObject, fields: [mmw.baseSfBib_conservationObject.keyField, mmw.baseSfBib_conservationObject.displayField]}),sfDatabaseMode:true,mode:'local',hiddenName:'second_oeuvre__codeconservation',displayField:mmw.baseSfBib_conservationObject.displayField,valueField:mmw.baseSfBib_conservationObject.keyField,triggerAction:'all',lastQuery:''},{name:'second_oeuvre__info_so',fieldLabel:mmw.getI18nLabel('second_oeuvre__info_so', 'Commentaire'),width:'100%',itemId:'second_oeuvre__info_so',allowBlank:true,maxLength:1000,height:170,xtype:'textarea'}
-	]
+            {
+                name:'second_oeuvre__indexbatiment--name',
+                fieldLabel:mmw.getI18nLabel('second_oeuvre__indexbatiment', 'Indexbatiment'),
+                width:250,
+                itemId:'second_oeuvre__indexbatiment',
+                allowBlank:false,
+                xtype:'combo',
+                store:new Ext.data.ArrayStore({sfObject: mmw.baseSfIdentificationObject, fields: [mmw.baseSfIdentificationObject.keyField, mmw.baseSfIdentificationObject.displayField]}),
+                sfDatabaseMode:true,
+                mode:'local',
+                hiddenName:'second_oeuvre__indexbatiment',
+                displayField:mmw.baseSfIdentificationObject.displayField,
+                valueField:mmw.baseSfIdentificationObject.keyField,
+                triggerAction:'all',
+                lastQuery:''
+            },
+            {
+                name:'second_oeuvre__indexso',
+                fieldLabel:mmw.getI18nLabel('second_oeuvre__indexso', 'Indexso'),
+                width:250,
+                itemId:'second_oeuvre__indexso',
+                allowBlank:true,
+                xtype:'hidden'
+            },
+            {
+                name:'second_oeuvre__codetypeso--name',
+                fieldLabel:mmw.getI18nLabel('second_oeuvre__codetypeso', 'Catégorie'),
+                width:250,
+                itemId:'second_oeuvre__codetypeso',
+                allowBlank:false,
+                xtype:'combo',
+                store:new Ext.data.ArrayStore({sfObject: mmw.baseSfBib_type_soObject, fields: [mmw.baseSfBib_type_soObject.keyField, mmw.baseSfBib_type_soObject.displayField]})
+                ,sfDatabaseMode:true,
+                mode:'local',
+                hiddenName:'second_oeuvre__codetypeso',
+                displayField:mmw.baseSfBib_type_soObject.displayField,
+                valueField:mmw.baseSfBib_type_soObject.keyField,
+                triggerAction:'all',
+                lastQuery:''},
+            {
+                name:'second_oeuvre__codeso--name',
+                fieldLabel:mmw.getI18nLabel('second_oeuvre__codeso', 'Elément'),
+                width:250,
+                itemId:'second_oeuvre__codeso',
+                allowBlank:false,xtype:'combo',
+                store:new Ext.data.ArrayStore({sfObject: mmw.baseSfBib_soObject, fields: [mmw.baseSfBib_soObject.keyField, mmw.baseSfBib_soObject.displayField]}),
+                sfDatabaseMode:true,
+                mode:'local',
+                hiddenName:'second_oeuvre__codeso',
+                displayField:mmw.baseSfBib_soObject.displayField,valueField:mmw.baseSfBib_soObject.keyField,
+                triggerAction:'all',
+                lastQuery:''
+            },
+            {
+                name:'second_oeuvre__so_rem',
+                fieldLabel:mmw.getI18nLabel('second_oeuvre__so_rem', 'Remarquable'),
+                width:250,
+                itemId:'second_oeuvre__so_rem',
+                allowBlank:true,
+                xtype:'checkbox'
+            },
+            {
+                name:'second_oeuvre__codeconservation--name',
+                fieldLabel:mmw.getI18nLabel('second_oeuvre__codeconservation', 'Conservation'),
+                width:250,
+                itemId:'second_oeuvre__codeconservation',
+                allowBlank:false,
+                xtype:'combo',
+                store:new Ext.data.ArrayStore({sfObject: mmw.baseSfBib_conservationObject, fields: [mmw.baseSfBib_conservationObject.keyField, mmw.baseSfBib_conservationObject.displayField]}),
+                sfDatabaseMode:true,
+                mode:'local',
+                hiddenName:'second_oeuvre__codeconservation',
+                displayField:mmw.baseSfBib_conservationObject.displayField,
+                valueField:mmw.baseSfBib_conservationObject.keyField,
+                triggerAction:'all',
+                lastQuery:''
+            },
+            {
+                name:'second_oeuvre__info_so',
+                fieldLabel:mmw.getI18nLabel('second_oeuvre__info_so', 'Commentaire'),
+                width:'100%',
+                itemId:'second_oeuvre__info_so',
+                allowBlank:true,
+                maxLength:1000,
+                height:170,
+                xtype:'textarea'
+            }
+        ]
 	]        });
         
         mmw.second_oeuvreGridFormPanel.superclass.initComponent.call(this);  

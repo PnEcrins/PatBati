@@ -23,13 +23,6 @@ class <?php echo $this->getGeneratedModuleName() ?>Actions extends sfBaseMmwExtj
     {
       $this->forward(sfConfig::get('sf_secure_module'), sfConfig::get('sf_secure_action'));
     }
-
-    $user = $this->getUser();
-    $this->json['credentials'] = array(
-      'save' => $user->hasCredential('save'),
-      'admin' => $user->hasCredential('admin')
-    );
-
     $this->dispatcher->notify(new sfEvent($this, 'admin.pre_execute', array('configuration' => $this->configuration)));
     $this->helper = new <?php echo $this->getModuleName() ?>GeneratorHelper();
   }

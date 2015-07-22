@@ -5,7 +5,7 @@ mmw_debug_mode = false;
 Ext.ux.Lightbox.register('a[rel^=lightbox]', false);
 
 /******************************************************************
- *               	PARTIE GESTION DES LISTES         	          *
+ *               	PARTIE ECRANS D'ADMINISTRATION          	  *
  ******************************************************************/
 
 var adminElementsSoGridFormPanel = new mmw.bib_soGridFormPanel({
@@ -92,7 +92,7 @@ adminBibRisquenatGridFormPanel.addDeleteButton();
 
 var adminContentPanel = new Ext.TabPanel({
 	activeTab: 0,
-	title: 'Gestion des listes',
+	title: 'Ecran d\'administration',
 //	layout: 'fit',
 	frame: true,
 	region: 'center',
@@ -411,8 +411,7 @@ batimentGridPanel.getTopToolbar().add(
 	'-',
 	{
     xtype: 'button',
-    text: 'Exporter les bâtiments',
-    tooltip : 'Exporter la liste des bâtiments sélectionnés',
+    text: 'Exporter tous les bâtiments selectionnées',
     handler: function() {
       Ext.getBody().mask("Géneration du fichier Excel des bâtiments …");
   
@@ -434,8 +433,7 @@ batimentGridPanel.getTopToolbar().add(
 	'-',
 	{
 		xtype: 'button',
-		text: 'Exporter les travaux',
-        tooltip : 'Exporter la liste des travaux concernant les bâtiments sélectionnés',
+		text: 'Exporter la partie travaux',
 		handler: function() {
       Ext.getBody().mask("Géneration du fichier Excel des travaux …");
       
@@ -458,11 +456,11 @@ batimentGridPanel.getTopToolbar().add(
 
 batimentGridPanel.getTopToolbar().add('->');
 
-if (batimentGridPanel.hasCredential('admin')) {
+if (mmw.hasCredential('admin')) {
 	batimentGridPanel.getTopToolbar().add(
 		{
 		    xtype: 'button',
-		    text: 'Gestion des listes',
+		    text: 'Administration',
 		    handler: function() {
 				batiContentPanel.add(adminContentPanel).show();
 			}
@@ -470,7 +468,7 @@ if (batimentGridPanel.hasCredential('admin')) {
 	);
 } 
 
-if (batimentGridPanel.hasCredential('save')) {
+if (mmw.hasCredential('save')) {
 	batimentGridPanel.getTopToolbar().add(
 		'-',
 		{
@@ -832,7 +830,7 @@ mmw.batimentInfoTabs = Ext.extend(Ext.TabPanel, {
             });
 			
 			
-			if(demandeEditorGridPanel.hasCredential('save')) {
+			if(mmw.hasCredential('save')) {
             	demandeEditorGridPanel.addInsertButton();
             	demandeEditorGridPanel.addDeleteButton();
             };
@@ -846,7 +844,7 @@ mmw.batimentInfoTabs = Ext.extend(Ext.TabPanel, {
                 }
             });
 			
-			if(travauxEditorGridPanel.hasCredential('save')) {
+			if(mmw.hasCredential('save')) {
             	travauxEditorGridPanel.addInsertButton();
             	travauxEditorGridPanel.addDeleteButton();
 			}
@@ -1050,7 +1048,7 @@ mmw.batimentInfoTabs = Ext.extend(Ext.TabPanel, {
 					columnWidth: 0.1,
 					items: [new Ext.Button({
 						cls: 'x-btn-icon',
-						icon: 'js/mmwExtjs/images/delete.png',
+						icon: '../js/mmwExtjs/images/delete.png',
 						handler: function(){
 							deleteDoubleComboPanel(formPanel, staticIndex);
 						}
@@ -1259,7 +1257,7 @@ mmw.batimentInfoTabs = Ext.extend(Ext.TabPanel, {
             }, structuresFormPanel, {single: true});
             /* FIN PARTIE MATGE / MEO */
 			
-			if(structuresFormPanel.hasCredential('save')) {
+			if(mmw.hasCredential('save')) {
             	structuresFormPanel.addInsertButton();
             	structuresFormPanel.addDeleteButton();
             };
@@ -1342,7 +1340,7 @@ mmw.batimentInfoTabs = Ext.extend(Ext.TabPanel, {
 			initMatfinsFinitionsDoubleComboPanels(second_oeuvreFormPanel);	
 			/* FIN PARTIE MATFINS / FINITION */
 			
-			if(second_oeuvreFormPanel.hasCredential('save')) {
+			if(mmw.hasCredential('save')) {
             	second_oeuvreFormPanel.addInsertButton();
             	second_oeuvreFormPanel.addDeleteButton();
             }
@@ -1438,7 +1436,7 @@ mmw.batimentInfoTabs = Ext.extend(Ext.TabPanel, {
 			}, equipementsEditorGridPanel, {single: true});
             /* FIN PARTIE EQUIPEMENTS / CATEGORIES */
 			
-			if(equipementsEditorGridPanel.hasCredential('save')) {			
+			if(mmw.hasCredential('save')) {			
             	equipementsEditorGridPanel.addInsertButton();
             	equipementsEditorGridPanel.addDeleteButton();
             }
@@ -1467,7 +1465,7 @@ mmw.batimentInfoTabs = Ext.extend(Ext.TabPanel, {
                 }
             });
             
-            if(elements_paysagersEditorGridPanel.hasCredential('save')) {
+            if(mmw.hasCredential('save')) {
             	elements_paysagersEditorGridPanel.addInsertButton();
             	elements_paysagersEditorGridPanel.addDeleteButton();
             }
@@ -1518,7 +1516,7 @@ mmw.batimentInfoTabs = Ext.extend(Ext.TabPanel, {
 				}
             });
 			
-			if(illustrationFormPanel.hasCredential('save')) {
+			if(mmw.hasCredential('save')) {
             	illustrationFormPanel.addInsertButton();
             	illustrationFormPanel.addDeleteButton();
             }
@@ -1570,7 +1568,7 @@ mmw.batimentInfoTabs = Ext.extend(Ext.TabPanel, {
 				}
             });
 			
-			if(documentFormPanel.hasCredential('save')) {
+			if(mmw.hasCredential('save')) {
 				documentFormPanel.addInsertButton();
 				documentFormPanel.addDeleteButton();
             }

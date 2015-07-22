@@ -17,6 +17,7 @@ class bib_equipementActions extends autoBib_equipementActions
 	{		
 		$bibEquipementsList = Doctrine::getTable('BibEquipement')
 		  ->createQuery('e')
+          ->innerJoin('e.BibTypeEquipement bte')
 		  ->orderBy('e.equipement')
 		  ->execute();
 
@@ -27,6 +28,7 @@ class bib_equipementActions extends autoBib_equipementActions
 			$bibEquipementsValuesList[$i][sfMmwExtjsUtil::getSfExtjsNameFromField('bib_equipement', 'codeequipement')] = $bibEquipement->getCodeequipement();
 			$bibEquipementsValuesList[$i][sfMmwExtjsUtil::getSfExtjsNameFromField('bib_equipement', 'equipement')] = $bibEquipement->getEquipement();
 			$bibEquipementsValuesList[$i][sfMmwExtjsUtil::getSfExtjsNameFromField('bib_equipement', 'codetypeequip')] = $bibEquipement->getCodetypeequip();
+			$bibEquipementsValuesList[$i][sfMmwExtjsUtil::getSfExtjsNameFromField('bib_equipement', 'typeequip')] = $bibEquipement->getBibTypeEquipement()->getTypeEquip();
 			$i++;
 		}
 

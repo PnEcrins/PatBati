@@ -95,7 +95,7 @@ mmw.bib_equipementStore = function(c) {
   }
   mmw.bib_equipementStore.superclass.constructor.call(this, Ext.apply({
     sfObject : new mmw.sfBib_equipementObject,
-    fields : ['bib_equipement__codeequipement', 'bib_equipement__equipement', 'bib_equipement__codetypeequip', 'bib_equipement__codetypeequip']
+    fields : ['bib_equipement__codeequipement', 'bib_equipement__equipement', 'bib_equipement__codetypeequip', 'bib_equipement__typeequip', 'bib_equipement__codetypeequip']
   }, c));
 };
 
@@ -178,6 +178,9 @@ mmw.bib_equipementGridFilters = function(c) {
       dataIndex : 'bib_equipement__equipement',
       type : 'string'
     }, {
+      dataIndex : 'bib_equipement__typeequip',
+      type : 'string'
+    }, {
       dataIndex : 'bib_equipement__codetypeequip',
       options : Ext.decode(this.filtersData['bib_equipement__codetypeequip']),
       type : 'list'
@@ -205,7 +208,7 @@ mmw.bib_equipementGridPanel = Ext.extend(mmw.GridPanel, {
         emptyMsg : this.getLl('PagerEmptyMsg', new Array(scope.sfObject.humanName, scope.sfObject.upHumanName, '{0}', '{1}', '{2}'))
       }),
       columns : [{
-        header : mmw.getI18nColumnHeader('bib_equipement__codeequipement', 'Codeequipement'),
+        header : mmw.getI18nColumnHeader('bib_equipement__codeequipement', 'N°'),
         hidden : 1,
         width : 75,
         sortable : true,
@@ -216,10 +219,16 @@ mmw.bib_equipementGridPanel = Ext.extend(mmw.GridPanel, {
         sortable : true,
         dataIndex : 'bib_equipement__equipement'
       }, {
-        header : mmw.getI18nColumnHeader('bib_equipement__codetypeequip', 'Catégorie'),
+        header : mmw.getI18nColumnHeader('bib_equipement__codetypeequip', 'Code catégorie'),
+        hidden : 1,
         width : 75,
         sortable : true,
         dataIndex : 'bib_equipement__codetypeequip'
+      }, {
+        header : mmw.getI18nColumnHeader('bib_equipement__typeequip', 'Catégorie'),
+        width : 75,
+        sortable : true,
+        dataIndex : 'bib_equipement__typeequip'
       }]
     });
     mmw.bib_equipementGridPanel.superclass.initComponent.call(this);
@@ -269,7 +278,18 @@ mmw.bib_equipementEditorGridPanel = Ext.extend(mmw.EditorGridPanel, {
           xtype : 'textfield'
         }
       }, {
-        header : mmw.getI18nColumnHeader('bib_equipement__codetypeequip', 'Catégorie'),
+        header : mmw.getI18nColumnHeader('bib_equipement__typeequip', 'Catégorie'),
+        width : 75,
+        sortable : true,
+        dataIndex : 'bib_equipement__typeequip',
+        editor : {
+          itemId : 'bib_equipement__typeequip',
+          allowBlank : true,
+          maxLength : 50,
+          xtype : 'textfield'
+        }
+      }, {
+        header : mmw.getI18nColumnHeader('bib_equipement__codetypeequip', 'Code catégorie'),
         width : 75,
         sortable : true,
         dataIndex : 'bib_equipement__codetypeequip',

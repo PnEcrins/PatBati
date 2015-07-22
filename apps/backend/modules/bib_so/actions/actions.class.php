@@ -15,7 +15,7 @@ class bib_soActions extends autoBib_soActions
 {
 	public function executeIndex(sfWebRequest $request)
 	{
-		$bibSosList = Doctrine::getTable('BibSo')->findAll();
+		$bibSosList = Doctrine::getTable('BibSo')->createQuery('so')->innerJoin('so.BibTypeSo bts')->execute();
 	
 		$bibSosValuesList = array();
 		$i = 0;
@@ -24,6 +24,7 @@ class bib_soActions extends autoBib_soActions
 			$bibSosValuesList[$i][sfMmwExtjsUtil::getSfExtjsNameFromField('bib_so', 'codeso')] = $bibSo->getCodeso();
 			$bibSosValuesList[$i][sfMmwExtjsUtil::getSfExtjsNameFromField('bib_so', 'second_oeuvre')] = $bibSo->getSecondOeuvre();
 			$bibSosValuesList[$i][sfMmwExtjsUtil::getSfExtjsNameFromField('bib_so', 'codetypeso')] = $bibSo->getCodetypeso();
+			$bibSosValuesList[$i][sfMmwExtjsUtil::getSfExtjsNameFromField('bib_so', 'typeso')] = $bibSo->getBibTypeSo()->getTypeSo();
 			$i++;
 		}
 	

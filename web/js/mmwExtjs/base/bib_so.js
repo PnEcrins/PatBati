@@ -76,6 +76,7 @@ mmw.bib_soStore = function(c) {
 		'bib_so__codeso',
 		'bib_so__second_oeuvre',
 		'bib_so__codetypeso',
+		'bib_so__typeso',
 		'bib_so__codetypeso'
 	] 
 	}, c));
@@ -126,6 +127,7 @@ mmw.bib_soGridFilters = function(c) {
 	    filters: [
 		{dataIndex:'bib_so__codeso',type:'string',disabled:true},
 		{dataIndex:'bib_so__second_oeuvre',type:'string'},
+		{dataIndex:'bib_so__typeso',type:'string'},
 		{dataIndex:'bib_so__codetypeso',options:Ext.decode(this.filtersData['bib_so__codetypeso']),type:'list'}
 	]	}, c));
 };
@@ -150,9 +152,10 @@ mmw.bib_soGridPanel = Ext.extend(mmw.GridPanel,{
 		        emptyMsg: this.getLl('PagerEmptyMsg', new Array(scope.sfObject.humanName, scope.sfObject.upHumanName, '{0}', '{1}', '{2}'))
 		    }),
 			columns: [
-		{header:mmw.getI18nColumnHeader('bib_so__codeso', 'Elément'),hidden:1,width:75,sortable:true,dataIndex:'bib_so__codeso'},
+		{header:mmw.getI18nColumnHeader('bib_so__codeso', 'N°'),hidden:1,width:75,sortable:true,dataIndex:'bib_so__codeso'},
 		{header:mmw.getI18nColumnHeader('bib_so__second_oeuvre', 'Second oeuvre'),width:75,sortable:true,dataIndex:'bib_so__second_oeuvre'},
-		{header:mmw.getI18nColumnHeader('bib_so__codetypeso', 'Catégorie'),width:75,sortable:true,dataIndex:'bib_so__codetypeso'}
+		{header:mmw.getI18nColumnHeader('bib_so__codetypeso', 'Code catégorie'),hidden:1,width:75,sortable:true,dataIndex:'bib_so__codetypeso'},
+		{header:mmw.getI18nColumnHeader('bib_so__typeso', 'Catégorie'),width:75,sortable:true,dataIndex:'bib_so__typeso'}
 	]        });
         mmw.bib_soGridPanel.superclass.initComponent.call(this);
     }
