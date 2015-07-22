@@ -511,67 +511,118 @@ batimentGridPanel.on('rowdblclick', function(batimentGridPanel, data, e){
 
 // batiment Panel
 mmw.batimentPanel = Ext.extend(Ext.Panel, {
-    initComponent: function(){
-        this.batimentInfoTabs = new mmw.batimentInfoTabs({
-            region: 'south',
-            width: '100%',
-            height: 520,
-            activeTab: 0,
-            frame: true,
-            batimentId: this.batimentId,
-			batimentPanel: this
-        });
-		
-		this.topLeftPanel = new Ext.Panel({
-	        width: 300,
-	        height: '100%',
-			margins: '5 0 0 5'
-	    });
-		
-		this.topCenterPanel = new Ext.Panel({
-	        columnWidth: .3,
-			margins: '5 0 0 10'
-	    });
-		
-		this.topRightPanel = new Ext.Panel({
-	        columnWidth: .3,
-			margins: '5 0 0 10'
-	    });
-		
-		this.topPanel = new Ext.Panel({
-//            title: 'Main Content',
-            itemId: 'main_content' + this.batimentId, // change that when we will create a new batiment
-		    layout:'column',
-			region: 'center',
-//		    margins: '5 0 0 0',
-			items: [this.topLeftPanel, this.topCenterPanel, this.topRightPanel]
-        });
-		
-        Ext.apply(this, {
-            layout: 'border',
-            defaults: {
-                hideMode: 'offsets'
-            },
-            deferredRender: false,
-            layoutOnTabChange: true,
-            autodestroy: false,
-            items: [this.topPanel, this.batimentInfoTabs]
-            // statut bar
-            /*
-             bbar: new Ext.StatusBar({
-             id: 'form-statusbar',
-             defaultText: 'Ready'
-             })
-             */
-        });
-        mmw.batimentPanel.superclass.initComponent.call(this);
-    },
-    
-    onRender: function(ct, position){
-        mmw.batimentPanel.superclass.onRender.call(this, ct, position);
-        this.batimentInfoTabs.addTabs(this.batimentId ? this.batimentId : 0);
-    }
-});
+  initComponent : function() {
+    this.batimentInfoTabs = new mmw.batimentInfoTabs({
+      region : 'south',
+      width : '100%',
+      height : 520,
+      activeTab : 0,
+      frame : true,
+      batimentId : this.batimentId,
+      batimentPanel : this
+    });
+
+    this.topLeftPanel = new Ext.Panel({
+      width : 300,
+      height : '100%',
+      margins : '5 0 0 5'
+    });
+
+    this.topCenterPanel = new Ext.Panel({
+      columnWidth : .3,
+      margins : '5 0 0 10'
+    });
+
+    this.topRightPanel = new Ext.Panel({
+      columnWidth : .3,
+      margins : '5 0 0 10'
+    });
+
+    this.topPanel = new Ext.Panel({
+      itemId : 'main_content' + this.batimentId,
+      region : 'center',
+      cls: 'batiment_header',
+      data: {
+        batimentId: -1,
+        identification__appelation : null,
+        identification__codeclasse: null,
+        identification__secteur : null,
+        identification__codeinsee : null,
+        identification__lieu_dit: null
+      },
+      tpl: new Ext.XTemplate(
+        '<tpl if="values.batiment == -1">',
+          '<a rel="lightbox" href="illustration/show?indexbatiment={batimentId}"><img src="./illustration/bandeauThumb" /></a>',
+        '</tpl>',
+        '<tpl if="values.batiment != -1">',
+          '<a rel="lightbox" href="illustration/show?indexbatiment={batimentId}"><img src="./illustration/bandeauThumb?indexbatiment={batimentId}&ts{[new Date().getTime()]}" /></a>',
+        '</tpl>',
+        '<div>',
+          '<h2>',
+            '<tpl if="!Ext.isEmpty(values.identification__appelation)">',
+              '{identification__appelation}',
+            '</tpl>',
+            '<tpl if="Ext.isEmpty(values.identification__appelation)">',
+              'Pas d\'appellation',
+            '</tpl>',
+          '</h2>',
+          '<p>',
+            '<tpl if="!Ext.isEmpty(values.identification__codeclasse)">',
+              '{identification__codeclasse}',
+            '</tpl>',
+            '<tpl if="Ext.isEmpty(values.identification__codeclasse)">',
+              'Pas de type architectural',
+            '</tpl>',
+          '</p>',
+        '</div>',
+        '<div>',
+          '<p>',
+            '<tpl if="!Ext.isEmpty(values.identification__secteur)">',
+              '{identification__secteur}',
+            '</tpl>',
+            '<tpl if="Ext.isEmpty(values.identification__secteur)">',
+              'Pas de type secteur',
+            '</tpl>',
+          '</p>',
+          '<p>',
+            '<tpl if="!Ext.isEmpty(values.identification__codeinsee)">',
+              '{identification__codeinsee}',
+            '</tpl>',
+            '<tpl if="Ext.isEmpty(values.identification__codeinsee)">',
+              'Pas de commune',
+            '</tpl>',
+          '</p>',
+          '<p>',
+            '<tpl if="!Ext.isEmpty(values.identification__lieu_dit)">',
+              '{identification__lieu_dit}',
+            '</tpl>',
+            '<tpl if="Ext.isEmpty(values.identification__lieu_dit)">',
+              'Pas de lieu-dit',
+            '</tpl>',
+          '</p>',
+        '</div>'
+      )
+    });
+
+    Ext.apply(this, {
+      layout : 'border',
+      defaults : {
+        hideMode : 'offsets'
+      },
+      deferredRender : false,
+      layoutOnTabChange : true,
+      autodestroy : false,
+      items : [this.topPanel, this.batimentInfoTabs]
+    });
+    mmw.batimentPanel.superclass.initComponent.call(this);
+  },
+
+  onRender : function(ct, position) {
+    mmw.batimentPanel.superclass.onRender.call(this, ct, position);
+    this.batimentInfoTabs.addTabs(this.batimentId ? this.batimentId : 0);
+  }
+}); 
+
 
 // batiment Info Tabs
 mmw.batimentInfoTabs = Ext.extend(Ext.TabPanel, {
@@ -590,60 +641,29 @@ mmw.batimentInfoTabs = Ext.extend(Ext.TabPanel, {
 			batimentInfoTabs.batimentId = -1;
 		}
 		
-		var updateBandeauIllustration = function() {
-			var timestamp = new Date().getTime();
-			
-			if (batimentInfoTabs.batimentId != -1){
-				var img_src = 'illustration/bandeauThumb?indexbatiment='+batimentInfoTabs.batimentId+'&ts='+timestamp;
-			}
-			else {
-				var img_src = 'illustration/bandeauThumb';
-			}
-			
-			// Photo du batiment
-			var topLeftContent = '<a rel="lightbox" href="illustration/show?indexbatiment='+batimentInfoTabs.batimentId+'"><img src="'+img_src+'" /></a>';
-			batimentInfoTabs.batimentPanel.topLeftPanel.getEl().on('load', function() {
-				batimentInfoTabs.batimentPanel.topLeftPanel.doLayout();
-			});
-			batimentInfoTabs.batimentPanel.topLeftPanel.getEl().update(topLeftContent);
-			batimentInfoTabs.batimentPanel.topLeftPanel.doLayout();
-		};
-		
-		var updateBandeau = function(result) {
-			// Définition du titre de la tab du bâtiment
-			if (result.data.identification__appelation) {
-				batiContentPanel.getActiveTab().setTitle(result.data.identification__appelation);
-			}
-		
-			/* TOP CENTER CONTENT */
-			var topCenterContent = '<div style="margin-top: 20px; line-height: 30px;">';
-			
-			// Appelation
-			topCenterContent+= '<p>'+(result.data.identification__appelation || 'Pas d\'appellation')+'</p>';
-			// Type architectural
-			topCenterContent+= '<p><i>'+(result.list.identification__codeclasse[result.data.identification__codeclasse] || 'Pas de type architectural')+'</i></p>';
-			
-			topCenterContent+= '</div>'; 
-			/* FIN TOP CENTER CONTENT */
-			
-			/* TOP RIGHT CONTENT */
-			var topRightContent = '<div style="margin-top: 20px; line-height: 30px;">';
-			
-			// Secteur
-			topRightContent+= '<p>'+(result.data.identification__secteur || 'Pas de secteur')+'</p>';
-			// Commune
-			topRightContent+= '<p>'+(result.list.identification__codeinsee[result.data.identification__codeinsee] || 'Pas de commune')+'</p>';
-			// Lieu-dit
-			topRightContent+= '<p>'+(result.data.identification__lieu_dit || 'Pas de lieu-dit')+'</p>';
-			
-			topRightContent+= '</div>'; 
-			/* FIN TOP RIGHT CONTENT */
-			
-			batimentInfoTabs.batimentPanel.topCenterPanel.getEl().update(topCenterContent);
-			batimentInfoTabs.batimentPanel.topRightPanel.getEl().update(topRightContent);
-			batimentInfoTabs.batimentPanel.topPanel.doLayout();
-		};
-		
+
+    var updateBandeauIllustration = function() {
+      batimentInfoTabs.batimentPanel.topPanel.tpl.overwrite(batimentInfoTabs.batimentPanel.topPanel.el, batimentInfoTabs.batimentPanel.topPanel.data);
+    };
+
+    var updateBandeau = function(result) {
+      batimentInfoTabs.batimentPanel.topPanel.data = {
+        batimentId : batimentInfoTabs.batimentId,
+        identification__appelation : result.data.identification__appelation,
+        identification__codeclasse : result.list.identification__codeclasse[result.data.identification__codeclasse],
+        identification__secteur : result.data.identification__secteur,
+        identification__codeinsee : result.list.identification__codeinsee[result.data.identification__codeinsee],
+        identification__lieu_dit : result.data.identification__lieu_dit
+      };
+
+      batimentInfoTabs.batimentPanel.topPanel.tpl.overwrite(batimentInfoTabs.batimentPanel.topPanel.el, batimentInfoTabs.batimentPanel.topPanel.data);
+
+      // Définition du titre de la tab du bâtiment
+      if (result.data.identification__appelation) {
+        batiContentPanel.getActiveTab().setTitle(result.data.identification__appelation);
+      }
+    };
+
         // tab renseignements
         var renseignementsFormPanel = new mmw.identificationFormPanel({
             height: '100%',
@@ -749,7 +769,6 @@ mmw.batimentInfoTabs = Ext.extend(Ext.TabPanel, {
 		}));
 		
 		renseignementsFormPanel.on('afterload', function(result){
-			updateBandeauIllustration();
 			updateBandeau(result);
 		});
 		

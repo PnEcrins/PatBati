@@ -7,37 +7,66 @@ body {
 }
 
 #header {
-	background:#4E79B2;
-	color:#ffffff;
-	padding: 5px;
-	display: flex;
-	align-items: center;
+  background:#4E79B2;
+  color:#ffffff;
+  padding: 5px;
+  display: flex;
+  align-items: center;
 }
 
 
 #header li :link, #header li :visited, #header a {
-	color:#ffffff;
-	text-decoration:none;
+  color:#ffffff;
+  text-decoration:none;
 }
 
 #header ul {
-	margin-top: 7px;
+  margin-top: 7px;
 }
 
 #header li {
-	display: inline;
+  display: inline;
 }
 
 h1 {
-	font-size:1em;
-	flex: 1;
+  font-size:1em;
+  flex: 1;
 }
 
 #logout{
-	/*position:absolute;
-	right:120px;
-	top:22px;
-	width:100px;
-	*/
-	padding-right: 1em;
+  padding-right: 1em;
+}
+
+/* Style pour bandeau de la fiche bâtiment */
+.batiment_header {
+  display: flex;
+  align-items: stretch;
+  background-color: white;
+}
+
+.batiment_header a {
+  width: 300px;
+}
+
+.batiment_header a img {
+  height: 100%;
+  width: 300px;
+}
+
+.batiment_header div {
+  flex: 1;
+  padding: 1em 0 0.5em 0.5em;
+}
+
+.batiment_header h2 {
+  font-size: 1.3em;
+  margin-bottom: 0.5em;
+}
+
+.batiment_header h2 + p {
+  font-style: italic;
+}
+
+.batiment_header p + p {
+  margin-top: 0.5em;
 }
