@@ -4,7 +4,6 @@ class sfBaseMmwExtjsActions extends sfActions
 {
 	var $filters = array(); // array of filters 
 	var $json = array(); // result json values return to extjs
-//coucou	
 	/*
 	 * call this action to get the javascript associated to the module
 	 */

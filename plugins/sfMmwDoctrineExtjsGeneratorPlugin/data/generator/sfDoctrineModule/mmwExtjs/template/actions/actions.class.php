@@ -24,16 +24,13 @@ class <?php echo $this->getGeneratedModuleName() ?>Actions extends sfBaseMmwExtj
       $this->forward(sfConfig::get('sf_secure_module'), sfConfig::get('sf_secure_action'));
     }
 
-	// set credential info for extjs
-	// this is used for extjs for example to hide the "save" button in form
-	$this->json['credentials']['save'] = $this->getUser()->hasCredential($this->configuration->getCredentials('save'));
- 	$this->json['credentials']['delete'] = $this->getUser()->hasCredential($this->configuration->getCredentials('delete'));
- 	
- 	// check if the user has admin rights, may be used for different purposes
- 	$this->json['credentials']['admin'] = $this->getUser()->hasCredential($this->configuration->getCredentials('admin'));
+    $user = $this->getUser();
+    $this->json['credentials'] = array(
+      'save' => $user->hasCredential('save'),
+      'admin' => $user->hasCredential('admin')
+    );
 
     $this->dispatcher->notify(new sfEvent($this, 'admin.pre_execute', array('configuration' => $this->configuration)));
-
     $this->helper = new <?php echo $this->getModuleName() ?>GeneratorHelper();
   }
 

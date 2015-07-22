@@ -27,7 +27,7 @@ class securityActions extends sfActions {
             $credentials = TRolesTable::$credentials[$id_droit];
             $user->addCredentials($credentials);
             $user->setAuthenticated(true);
-
+            $user->setAttribute('login', $params['login']);
             $this->redirect('@homepage');
           }
         }
@@ -42,7 +42,6 @@ class securityActions extends sfActions {
     $user = $this->getUser();
     $user->setAuthenticated(false);
     $user->clearCredentials();
-    $user->getAttributeHolder()->remove('sfGuardSecurityUser');
     $this->redirect('@login');
   }
 

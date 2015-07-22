@@ -1,11 +1,17 @@
 <?php
 class TRolesTable extends Doctrine_Table
 {
+  const CREDENTIAL_READ = 'read';
   const CREDENTIAL_SAVE = 'save';
   const CREDENTIAL_ADMIN = 'admin';
   
     public static $credentials = array(
+      0 => array(self::CREDENTIAL_READ),
+      1 => array(self::CREDENTIAL_READ),
       2 => array(self::CREDENTIAL_SAVE),
+      3 => array(self::CREDENTIAL_READ),
+      4 => array(self::CREDENTIAL_READ),
+      5 => array(self::CREDENTIAL_READ),
       6 => array(self::CREDENTIAL_SAVE,self::CREDENTIAL_ADMIN),
     );
   
