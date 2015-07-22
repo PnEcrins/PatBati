@@ -524,6 +524,7 @@ mmw.batimentPanel = Ext.extend(Ext.Panel, {
 		
 		this.topLeftPanel = new Ext.Panel({
 	        width: 300,
+	        height: '100%',
 			margins: '5 0 0 5'
 	    });
 		
@@ -618,7 +619,7 @@ mmw.batimentInfoTabs = Ext.extend(Ext.TabPanel, {
 			var topCenterContent = '<div style="margin-top: 20px; line-height: 30px;">';
 			
 			// Appelation
-			topCenterContent+= '<p>'+(result.data.identification__appelation || 'Pas d\'appelation')+'</p>';
+			topCenterContent+= '<p>'+(result.data.identification__appelation || 'Pas d\'appellation')+'</p>';
 			// Type architectural
 			topCenterContent+= '<p><i>'+(result.list.identification__codeclasse[result.data.identification__codeclasse] || 'Pas de type architectural')+'</i></p>';
 			
@@ -638,9 +639,6 @@ mmw.batimentInfoTabs = Ext.extend(Ext.TabPanel, {
 			topRightContent+= '</div>'; 
 			/* FIN TOP RIGHT CONTENT */
 			
-//			if ((result.data.identification__lieu_dit != '') && (result.data.identification__lieu_dit != null)) {
-//				topCenterContent+= '<p>Lieu dit: '+result.data.identification__lieu_dit+'</p>';
-//			}
 			batimentInfoTabs.batimentPanel.topCenterPanel.getEl().update(topCenterContent);
 			batimentInfoTabs.batimentPanel.topRightPanel.getEl().update(topRightContent);
 			batimentInfoTabs.batimentPanel.topPanel.doLayout();

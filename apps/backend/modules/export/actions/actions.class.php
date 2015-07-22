@@ -32,7 +32,20 @@ class exportActions extends sfActions {
 
 	public function executeComplete(sfWebRequest $request) {
 
-		$identification = Doctrine_Query::create()->from('Identification ide')->leftJoin('ide.BibImplantation bi')->leftJoin('ide.BibClasseArchi bca')->leftJoin('ide.BibFaitage bf')->leftJoin('ide.BibConservation bcon')->leftJoin('ide.BibExposition be')->leftJoin('ide.BibNotepatri bnp')->leftJoin('ide.RelMasques rm')->leftJoin('ide.RelRisquenats rr')->leftJoin('ide.RelProtections rp')->leftJoin('ide.RelIdentPerspectives rip')->where('ide.indexbatiment = ?', $request->getParameter('id'))->fetchOne();
+		$identification = Doctrine_Query::create()
+            ->from('Identification ide')
+            ->leftJoin('ide.BibImplantation bi')
+            ->leftJoin('ide.BibClasseArchi bca')
+            ->leftJoin('ide.BibFaitage bf')
+            ->leftJoin('ide.BibConservation bcon')
+            ->leftJoin('ide.BibExposition be')
+            ->leftJoin('ide.BibNotepatri bnp')
+            ->leftJoin('ide.RelMasques rm')
+            ->leftJoin('ide.RelRisquenats rr')
+            ->leftJoin('ide.RelProtections rp')
+            ->leftJoin('ide.RelIdentPerspectives rip')
+            ->where('ide.indexbatiment = ?', $request->getParameter('id'))
+            ->fetchOne();
 
 		$pdf = new completePdf('P', 'mm', 'A4');
 		$pdf->setIdentification($identification);

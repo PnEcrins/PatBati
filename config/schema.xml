@@ -9,6 +9,7 @@
   <table name="bib_classe_archi">
     <column name="codeclasse" type="INTEGER" primaryKey="true" autoIncrement="true" required="true" />
     <column name="classe" type="VARCHAR" size="50" required="false" />
+    <column name="classe_decrite" type="VARCHAR" size="100" required="false" />
   </table>
 
   <table name="bib_commune">

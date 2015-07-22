@@ -47,9 +47,9 @@ generator:
           label: "N° de parcelle du cadastre"
         altitude:
           label: "Altitude"
-        l2x:
+        x:
           label: "Coordonnée X"
-        l2y:
+        y:
           label: "Coordonnée Y"
         denivelle:
           label: "Dénivellé"
@@ -108,7 +108,7 @@ generator:
         display:
           0:
             "Renseignements": [indexbatiment, ancienindexbatiment, appelation, notepatri, patrimonialite, codeclasse, proprietaire, indivision, rel_protections_list]
-            "Géographie": [codeinsee, lieu_dit, cadastre, l2x, l2y, altitude, denivelle]
+            "Géographie": [codeinsee, lieu_dit, cadastre, x, 'y', altitude, denivelle]
           1:
             "Situation": [indexbatiment, codepem, codefaitage, situationgeo, exposition, pente]
             "Contexte naturel": [rel_risquenats_list, info_risquenat, rel_masques_list, info_masque]  
