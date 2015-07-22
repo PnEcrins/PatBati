@@ -5,7 +5,7 @@ mmw_debug_mode = false;
 Ext.ux.Lightbox.register('a[rel^=lightbox]', false);
 
 /******************************************************************
- *               	PARTIE ECRANS D'ADMINISTRATION          	  *
+ *               	PARTIE GESTION DES LISTES         	          *
  ******************************************************************/
 
 var adminElementsSoGridFormPanel = new mmw.bib_soGridFormPanel({
@@ -92,7 +92,7 @@ adminBibRisquenatGridFormPanel.addDeleteButton();
 
 var adminContentPanel = new Ext.TabPanel({
 	activeTab: 0,
-	title: 'Ecran d\'administration',
+	title: 'Gestion des listes',
 //	layout: 'fit',
 	frame: true,
 	region: 'center',
@@ -462,7 +462,7 @@ if (batimentGridPanel.hasCredential('admin')) {
 	batimentGridPanel.getTopToolbar().add(
 		{
 		    xtype: 'button',
-		    text: 'Administration',
+		    text: 'Gestion des listes',
 		    handler: function() {
 				batiContentPanel.add(adminContentPanel).show();
 			}
