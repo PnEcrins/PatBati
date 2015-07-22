@@ -179,7 +179,7 @@ class basePdfBase extends pdfDocument
         if($identification->getBibClasseArchi()->getClasseDecrite()!=null && $identification->getBibClasseArchi()->getClasseDecrite()!=''){$this->addLinesWithStyleAndSpace(null,explode('<br />',nl2br($this->wrapsString( $identification->getBibClasseArchi()->getClasseDecrite(), 80, "<br />"))));}
 		$this->Ln(5);
 		$this->Cell(100);
-		if($identification->getBibConservation()!=null && $identification->getBibConservation()!=''){$this->addLinesWithStyle('Etat de conservation : ', $identification->getBibConservation()->getCodeconservation() ? $identification->getBibConservation() : '');}
+		if($identification->getBibConservation()->getCodeconservation()!=null && $identification->getBibConservation()->getCodeconservation()!=''){$this->addLinesWithStyle('Etat de conservation : ', $identification->getBibConservation()->getCodeconservation() ? $identification->getBibConservation() : '');}
         if($perspectives != null && $perspectives != ''){$this->addLinesWithStyleAndSpace('Perspective : ', explode('<br />',nl2br($this->wrapsString( $perspectives, 45, "<br />"))));}
 		if($identification->getLastDateTravaux()!=null && $identification->getLastDateTravaux()!=''){
             if($identification->getLastDateTravaux()->getDateTravaux()){$this->addLinesWithStyle('Date derniers travaux : ', $identification->getLastDateTravaux() ? format_date($identification->getLastDateTravaux()->getDateTravaux(), 'dd/MM/yyyy', 'fr'): '');}
