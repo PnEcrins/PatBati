@@ -172,7 +172,7 @@ class basePdfBase extends pdfDocument
 		$this->Ln(15);
 		$this->Cell(100);
 		if($identification->getProprietaire()!=null && $identification->getProprietaire()!=''){$this->addLinesWithStyle('Propriétaire(s) : ', $identification->getProprietaire());}
-		if($identification->getX()!=null && $identification->getY()!=null && $identification->getX()!='' && $identification->getY()!='' ){$this->addLinesWithStyle('Coordonnées : ', 'x: '.$identification->getX().' y: '.$identification->getY());}
+		if($identification->getX()!=null && $identification->getY()!=null && $identification->getX()!='' && $identification->getY()!='' ){$this->addLinesWithStyle('Coordonnées (Lambert93): ', 'x: '.$identification->getX().' y: '.$identification->getY());}
 		$this->Ln(5);
 		$this->Cell(100);
 		if($identification->getBibClasseArchi()!=null && $identification->getBibClasseArchi()!=''){$this->addLinesWithStyle('Typologie : ', $identification->getBibClasseArchi());}
