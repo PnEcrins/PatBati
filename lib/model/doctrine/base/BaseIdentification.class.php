@@ -64,11 +64,11 @@ abstract class BaseIdentification extends sfDoctrineRecord
              'type' => 'integer',
              'length' => 4,
              ));
-        $this->hasColumn('l2x', 'integer', 4, array(
+        $this->hasColumn('x', 'integer', 4, array(
              'type' => 'integer',
              'length' => 4,
              ));
-        $this->hasColumn('l2y', 'integer', 4, array(
+        $this->hasColumn('y', 'integer', 4, array(
              'type' => 'integer',
              'length' => 4,
              ));
