@@ -16,7 +16,7 @@
 
 		<?php echo $identification->getBibCommune() ? $prefix.$identification->getBibCommune() : '' ?>, <?php echo $identification->getBibCommune() ? $identification->getBibCommune()->getBibSecteur() : '' ?>
 		<br />
-		<?php echo $identification->getL2x() ?> ; <?php echo $identification->getL2y() ?>
+		<?php echo $identification->getX() ?> ; <?php echo $identification->getY() ?>
 		</span>
 	</div>
 </div>

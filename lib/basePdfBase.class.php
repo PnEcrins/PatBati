@@ -63,11 +63,6 @@ class basePdfBase extends pdfDocument
 		$this->addTextWithLn($title);
 		$this->Ln(3);
 		$this->addTextWithLn($biCommune.' ('.$biSecteur.')');
-		if($this->getType() == 'synthese')
-		{
-			//			$this->Ln(3);
-			//			$this->addTextWithLn('Longitude : '.$identification->getL2x().' ; Latitude : '.$identification->getL2y());
-		}
 
 		$this->resetPosition();
 	}
@@ -169,7 +164,7 @@ class basePdfBase extends pdfDocument
 		$this->Ln(15);
 		$this->Cell(100);
 		$this->addLinesWithStyle('Propriétaire(s) : ', $identification->getProprietaire());
-		$this->addLinesWithStyle('Coordonnées : ', $identification->getL2x().' - '.$identification->getL2y());
+		$this->addLinesWithStyle('Coordonnées : ', $identification->getX().' - '.$identification->getY());
 		$this->Ln(5);
 		$this->Cell(100);
 		$this->addLinesWithStyle('Typologie : ', $identification->getBibClasseArchi());
@@ -426,7 +421,7 @@ class basePdfBase extends pdfDocument
 		$this->addTableTwoColls('Commune : ', $identification->getBibCommune());
 		$this->addTableTwoColls('Lieu dit : ', $identification->getLieuDit());
 		$this->addTableTwoColls('N° de parcelle du cadastre : ', $identification->getCadastre());
-		$this->addTableTwoColls('Coordonnée : ', $identification->getL2x().' - '.$identification->getL2y());
+		$this->addTableTwoColls('Coordonnée : ', $identification->getX().' - '.$identification->getY());
 		$this->addTableTwoColls('Altitude : ', $identification->getAltitude());
 		$this->addTableTwoColls('Dénivelé : ', $identification->getDenivelle());
 

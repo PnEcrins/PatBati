@@ -31,8 +31,8 @@
 		<td><?php echo utf8_decode($device->getSecteurCommune()); ?></td>
 		<td><?php echo utf8_decode($device->getBibCommune()); ?></td>
 		<td><?php echo utf8_decode($device->getAppelation()); ?></td>
-		<td><?php echo utf8_decode($device->getL2x());?></td>
-		<td><?php echo utf8_decode($device->getL2y());?></td>
+		<td><?php echo utf8_decode($device->getX());?></td>
+		<td><?php echo utf8_decode($device->getY());?></td>
 		<?php
 			  $value_protection = array();
 			  foreach($device->getRelProtections() as $protection):
