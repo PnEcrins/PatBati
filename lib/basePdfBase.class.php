@@ -129,33 +129,41 @@ class basePdfBase extends pdfDocument
 	{
 		$identification = $this->getIdentification();
 
-		$perspectives = $equipements = array();
-
-		foreach($identification->getRelIdentPerspectives() as $BibPerspective)
-		{
-			$perspectives[] = $BibPerspective->__toString();
+		$arrPerspectives = array();
+		foreach($identification->getRelIdentPerspectives() as $BibPerspective){
+			$arrPerspectives[] = $BibPerspective;
 		}
-
-		foreach($identification->getEquipementss() as $equipementsObject)
-		{
-			$equipements[] = $equipementsObject->getBibEquipement()->__toString();
+        $perspectives = implode(", ",$arrPerspectives);
+        
+        $arrEquipements = array();
+		foreach($identification->getEquipementss() as $equipementsObject){
+			$arrEquipements[] = $equipementsObject->getBibEquipement()->__toString();
 		}
-		$structureVertical = array();
+        $equipements = implode(", ",$arrEquipements);
+        
+		$arrVertical = array();
 		foreach($identification->getStructureVerticalePorteuse() as $vertical){
-			$structureVertical[] = $vertical->getBibMateriauxGe();
+			$arrVertical[] = $vertical->getBibMateriauxGe();
 		}
-		$structureHorizontal = array();
+        $structureVertical = implode(", ",$arrVertical);
+        
+		$arrHorizontal = array();
 		foreach($identification->getStructureHorizontalePorteuse() as $horizontal){
-			$structureHorizontal[] = $horizontal->getBibMateriauxGe();
+			$arrHorizontal[] = $horizontal->getBibMateriauxGe();
 		}
-		$structureCharpente = array();
+        $structureHorizontal = implode(", ",$arrHorizontal);
+        
+		$arrCharpente = array();
 		foreach($identification->getStructureCharpente() as $charpente){
-			$structureCharpente[] = $charpente->getBibMateriauxGe();
+			$arrCharpente[] = $charpente->getBibMateriauxGe();
 		}
-		$structureCouverture = array();
+        $structureCharpente = implode(", ",$arrCharpente);
+        
+		$arrCouverture = array();
 		foreach($identification->getStructureCouverture() as $couverture){
-			$structureCouverture[] = $couverture->getBibMateriauxGe();
+			$arrCouverture[] = $couverture->getBibMateriauxGe();
 		}
+        $structureCouverture = implode(", ",$arrCouverture);
 
 		$this->Image(sfConfig::get('app_images_upload_dir').$this->getNewConvertImageName(6),10,58,0,0,'');
 		$this->Image(sfConfig::get('app_images_upload_dir').$this->getNewConvertImageName(5),10,140,0,0,'');
@@ -163,33 +171,40 @@ class basePdfBase extends pdfDocument
 		$this->addBlockTitle('INFORMATIONS GENERALES',100);
 		$this->Ln(15);
 		$this->Cell(100);
-		$this->addLinesWithStyle('Propriétaire(s) : ', $identification->getProprietaire());
-		$this->addLinesWithStyle('Coordonnées : ', $identification->getX().' - '.$identification->getY());
+		if($identification->getProprietaire()!=null && $identification->getProprietaire()!=''){$this->addLinesWithStyle('Propriétaire(s) : ', $identification->getProprietaire());}
+		if($identification->getX()!=null && $identification->getY()!=null && $identification->getX()!='' && $identification->getY()!='' ){$this->addLinesWithStyle('Coordonnées : ', 'x: '.$identification->getX().' y: '.$identification->getY());}
 		$this->Ln(5);
 		$this->Cell(100);
-		$this->addLinesWithStyle('Typologie : ', $identification->getBibClasseArchi());
+		if($identification->getBibClasseArchi()!=null && $identification->getBibClasseArchi()!=''){$this->addLinesWithStyle('Typologie : ', $identification->getBibClasseArchi());}
+        if($identification->getBibClasseArchi()->getClasseDecrite()!=null && $identification->getBibClasseArchi()->getClasseDecrite()!=''){$this->addLinesWithStyleAndSpace(null,explode('<br />',nl2br($this->wrapsString( $identification->getBibClasseArchi()->getClasseDecrite(), 80, "<br />"))));}
 		$this->Ln(5);
 		$this->Cell(100);
-		$this->addLinesWithStyle('Etat de conservation : ', $identification->getBibConservation()->getCodeconservation() ? $identification->getBibConservation() : '');
-		$this->addLinesWithStyleAndSpace('Perspective : ', $perspectives);
-		$this->addLinesWithStyle('Date derniers travaux : ', $identification->getLastDateTravaux() ? format_date($identification->getLastDateTravaux()->getDateTravaux(), 'dd/MM/yyyy', 'fr'): '');
+		if($identification->getBibConservation()!=null && $identification->getBibConservation()!=''){$this->addLinesWithStyle('Etat de conservation : ', $identification->getBibConservation()->getCodeconservation() ? $identification->getBibConservation() : '');}
+        if($perspectives != null && $perspectives != ''){$this->addLinesWithStyleAndSpace('Perspective : ', explode('<br />',nl2br($this->wrapsString( $perspectives, 45, "<br />"))));}
+		if($identification->getLastDateTravaux()!=null && $identification->getLastDateTravaux()!=''){
+            if($identification->getLastDateTravaux()->getDateTravaux()){$this->addLinesWithStyle('Date derniers travaux : ', $identification->getLastDateTravaux() ? format_date($identification->getLastDateTravaux()->getDateTravaux(), 'dd/MM/yyyy', 'fr'): '');}
+        }
 		$this->Ln(5);
 		$this->Cell(100);
-		$this->addLinesWithStyle('Degré de patrimonialité : ', $identification->getNotepatri().'/6');
-		$this->addLinesWithStyleAndSpace('Patrimonialité : ',explode('<br />',nl2br($this->wrapsString( $identification->getPatrimonialite(), 45, "<br />"))));
-		$this->Ln(5);
-		$this->addBlockTitle('STRUCTURES PORTEUSES',100);
-		$this->Ln(15);
-		$this->Cell(100);
-		$this->addLinesWithStyleAndSpace('Structure porteuse verticale : ', $structureVertical);
-		$this->addLinesWithStyleAndSpace('Structure porteuse horizontale : ', $structureHorizontal);
-		$this->addLinesWithStyleAndSpace('Charpente : ', $structureCharpente);
-		$this->addLinesWithStyleAndSpace('Couverture : ', $structureCouverture);
-		$this->Ln(5);
-		$this->addBlockTitle('EQUIPEMENTS',100);
-		$this->Ln(15);
-		$this->Cell(100);
-		$this->addLinesWithStyleAndSpace('', $equipements);
+		if($identification->getNotepatri() != null && $identification->getNotepatri() != ''){$this->addLinesWithStyle('Degré de patrimonialité : ', $identification->getNotepatri().'/6');}
+		if($identification->getPatrimonialite() != null && $identification->getPatrimonialite() != ''){$this->addLinesWithStyleAndSpace('Patrimonialité : ',explode('<br />',nl2br($this->wrapsString( $identification->getPatrimonialite(), 45, "<br />"))));}
+        if(($structureVertical != null && $structureVertical != '') || ($structureHorizontal != null && $structureHorizontal != '') || ($structureCharpente != null && $structureCharpente != '') || ($structureCouverture != null && $structureCouverture != '')){ 
+            $this->Ln(5);
+            $this->addBlockTitle('STRUCTURES PORTEUSES',100);
+            $this->Ln(15);
+            $this->Cell(100);
+            if($structureVertical != null && $structureVertical != ''){$this->addLinesWithStyleAndSpace('Structure porteuse verticale : ', explode('<br />',nl2br($this->wrapsString( $structureVertical, 45, "<br />"))));}
+            if($structureHorizontal != null && $structureHorizontal != ''){$this->addLinesWithStyleAndSpace('Structure porteuse horizontale : ', explode('<br />',nl2br($this->wrapsString( $structureHorizontal, 45, "<br />"))));}
+            if($structureCharpente != null && $structureCharpente != ''){$this->addLinesWithStyleAndSpace('Charpente : ', explode('<br />',nl2br($this->wrapsString( $structureCharpente, 45, "<br />"))));}
+            if($structureCouverture != null && $structureCouverture != ''){$this->addLinesWithStyleAndSpace('Couverture : ', explode('<br />',nl2br($this->wrapsString( $structureCouverture, 45, "<br />"))));}
+		}
+        if($equipements != null && $equipements != ''){
+            $this->Ln(5);
+            $this->addBlockTitle('EQUIPEMENTS',100);
+            $this->Ln(15);
+            $this->Cell(100);
+            $this->addLinesWithStyleAndSpace('', explode('<br />',nl2br($this->wrapsString( $equipements, 45, "<br />"))));
+        }
 	}
 
 	public function getNewConvertImageName($type)

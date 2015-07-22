@@ -18,6 +18,10 @@ abstract class BaseBibClasseArchi extends sfDoctrineRecord
              'type' => 'string',
              'length' => 50,
              ));
+        $this->hasColumn('classe_decrite', 'string', 200, array(
+             'type' => 'string',
+             'length' => 200,
+             ));
     }
 
     public function setUp()
