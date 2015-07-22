@@ -95,7 +95,8 @@ mmw.bib_equipementStore = function(c) {
   }
   mmw.bib_equipementStore.superclass.constructor.call(this, Ext.apply({
     sfObject : new mmw.sfBib_equipementObject,
-    fields : ['bib_equipement__codeequipement', 'bib_equipement__equipement', 'bib_equipement__codetypeequip', 'bib_equipement__typeequip', 'bib_equipement__codetypeequip']
+    fields : ['bib_equipement__codeequipement', 'bib_equipement__equipement', 'bib_equipement__codetypeequip', 'bib_equipement__typeequip', 'bib_equipement__codetypeequip'],
+    sortInfo: {field:'bib_equipement__equipement'}
   }, c));
 };
 

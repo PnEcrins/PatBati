@@ -7,7 +7,8 @@ mmw.documentsGridFormPanel = Ext.extend(mmw.GridFormPanel,{
 	
 		this.sfObject = new mmw.sfDocumentsObject;
 		
-		this.overrideGridConfig['title'] = this.overrideGridConfig['title'] || this.getLl('GridTitle', new Array(scope.sfObject.pluralHumanName, scope.sfObject.pluralUpHumanName));
+		// this.overrideGridConfig['title'] = this.overrideGridConfig['title'] || this.getLl('GridTitle', new Array(scope.sfObject.pluralHumanName, scope.sfObject.pluralUpHumanName));
+		this.overrideGridConfig['title'] = 'Liste des documents';
 		this.overrideGridConfig['height'] = this.overrideGridConfig['height'] || 299;
 		this.overrideGridConfig['form'] = this.overrideGridConfig['form'] || this;
 		

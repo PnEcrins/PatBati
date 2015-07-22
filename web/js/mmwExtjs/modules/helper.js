@@ -92,7 +92,7 @@ adminBibRisquenatGridFormPanel.addDeleteButton();
 
 var adminContentPanel = new Ext.TabPanel({
 	activeTab: 0,
-	title: 'Ecran d\'administration',
+	title: 'Gestion des listes',
 //	layout: 'fit',
 	frame: true,
 	region: 'center',
@@ -405,13 +405,14 @@ batimentGridPanel.getTopToolbar().add(
 	'-',
 	{
 		xtype: 'button',
-		text: 'Recherche avancee',
+		text: 'Recherche avancée',
 		handler: batimentGridPanel.openAdvancedSearchWindow
 	},
 	'-',
 	{
     xtype: 'button',
-    text: 'Exporter tous les bâtiments selectionnées',
+    text: 'Exporter les bâtiments',
+    tooltip : 'Exporter la liste des bâtiments sélectionnés',
     handler: function() {
       Ext.getBody().mask("Géneration du fichier Excel des bâtiments …");
   
@@ -433,7 +434,8 @@ batimentGridPanel.getTopToolbar().add(
 	'-',
 	{
 		xtype: 'button',
-		text: 'Exporter la partie travaux',
+		text: 'Exporter les travaux',
+		tooltip: 'Exporter la liste des travaux concernant les bâtiments sélectionnés',
 		handler: function() {
       Ext.getBody().mask("Géneration du fichier Excel des travaux …");
       
@@ -460,7 +462,7 @@ if (mmw.hasCredential('admin')) {
 	batimentGridPanel.getTopToolbar().add(
 		{
 		    xtype: 'button',
-		    text: 'Administration',
+		    text: 'Gestion des listes',
 		    handler: function() {
 				batiContentPanel.add(adminContentPanel).show();
 			}
@@ -938,6 +940,8 @@ mmw.batimentInfoTabs = Ext.extend(Ext.TabPanel, {
 		var addDoubleComboPanel = function(formPanel){
 			var formPrefix = formPanel.sfObject.singularName;
 			
+			var readOnly = (! mmw.hasCredential('save'));
+			
 			// On clone la config du bouton d'ajout
 			var cloneAddRelationButtonConfig = formPanel.addRelationButton.cloneConfig();
 			// Puis on supprime le bouton (pour l'ajouter à la fin)
@@ -959,6 +963,8 @@ mmw.batimentInfoTabs = Ext.extend(Ext.TabPanel, {
 				itemId: formPrefix+'__codefinition__'+staticIndex,
 				hideLabel: true,
 				disabled: true,
+        hideTrigger: readOnly,
+        disabled: readOnly,
 				width: 250,
 				allowBlank: false,
 				hiddenName: formPrefix+'__codefinition__'+staticIndex,
@@ -978,6 +984,8 @@ mmw.batimentInfoTabs = Ext.extend(Ext.TabPanel, {
 			var comboCodematfins = new Ext.form.ComboBox({
 				name: formPrefix+'__codematfins__'+staticIndex+'--name',
 				itemId: formPrefix+'__codematfins__'+staticIndex,
+				hideTrigger: readOnly,
+				disabled: readOnly,
 				hideLabel: true,
 				width: 250,
 				allowBlank: false,
@@ -994,10 +1002,10 @@ mmw.batimentInfoTabs = Ext.extend(Ext.TabPanel, {
 				displayField: mmw.baseSfBib_materiaux_finsObject.displayField,
 				valueField: mmw.baseSfBib_materiaux_finsObject.keyField,
 				listeners: {
-//					select: function(c, record, i){
-//						loadFinitionBySelectedMatFins(comboCodefinition, comboCodematfins.getValue());
-//					}
 					select: function(c, record, i){
+					  if(readOnly){
+					    return;
+					  }
 						if ((Ext.isDefined(comboCodematfins.oldValue) == false) || (comboCodematfins.oldValue != record.json[0])) {
 							comboCodefinition.setRawValue('');
 						}
@@ -1048,7 +1056,8 @@ mmw.batimentInfoTabs = Ext.extend(Ext.TabPanel, {
 					columnWidth: 0.1,
 					items: [new Ext.Button({
 						cls: 'x-btn-icon',
-						icon: '../js/mmwExtjs/images/delete.png',
+						icon: './js/mmwExtjs/images/delete.png',
+						hidden: readOnly,
 						handler: function(){
 							deleteDoubleComboPanel(formPanel, staticIndex);
 						}
@@ -1103,7 +1112,9 @@ mmw.batimentInfoTabs = Ext.extend(Ext.TabPanel, {
 					
 					// On filtre les données du combo de finitions à l'aide de la valeur du combo des matfins
 					comboCodefinition.store.filterBy(finitionsFilter.createDelegate(comboCodefinition, data[comboMatfins.itemId], true));
-					comboCodefinition.enable();
+					if((mmw.hasCredential('save'))){
+					  comboCodefinition.enable();
+					}
 					
 					comboMatfins.setValue(data[comboMatfins.itemId]);
 					comboMatfins.oldValue = data[comboMatfins.itemId];
@@ -1115,8 +1126,10 @@ mmw.batimentInfoTabs = Ext.extend(Ext.TabPanel, {
 
 		var initMatfinsFinitionsDoubleComboPanelsForForm = function(formPanel) {
 			// On définit le bouton d'ajout d'une nouvelle relation
+			
 			formPanel.addRelationButton = new Ext.Button({
 				text: 'Nouveau matériau fin',
+				hidden: (! mmw.hasCredential('save')),
 				handler: function() {
 					addDoubleComboPanel(formPanel);
 				}
@@ -1545,7 +1558,7 @@ mmw.batimentInfoTabs = Ext.extend(Ext.TabPanel, {
                 },
 				overrideGridConfig: {
 					personnalizedColumns: [
-						{dataIndex:'documents__fichier_source', renderer: function(fichierSource) { return '<a href="../uploads/documents/' + fichierSource + '">' + fichierSource + '</a>'; }}
+						{dataIndex:'documents__fichier_source', renderer: function(fichierSource) { return '<a href="./uploads/documents/' + fichierSource + '">' + fichierSource + '</a>'; }}
 					]
 				},
 				newLineFromForm: function(formValues) {

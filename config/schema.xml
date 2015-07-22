@@ -243,8 +243,8 @@
     <column name="cadastre" type="VARCHAR" size="20" required="false" />
     <column name="lieu_dit" type="VARCHAR" size="100" required="false" />
     <column name="altitude" type="INTEGER" required="false" />
-    <column name="l2x" type="BIGINT" required="false" />
-    <column name="l2y" type="BIGINT" required="false" />
+    <column name="x" type="BIGINT" required="false" />
+    <column name="y" type="BIGINT" required="false" />
     <column name="situationgeo" type="VARCHAR" size="50" required="false" />
     <column name="denivelle" type="INTEGER" required="false" />
     <column name="exposition" type="INTEGER" required="false" />

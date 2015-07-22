@@ -141,7 +141,7 @@ mmw.demandeGridPanel = Ext.extend(mmw.GridPanel,{
 		var scope = this;
 		this.sfObject = mmw.baseSfDemandeObject; 
         Ext.apply(this, this.initialConfig, {
-        	title: this.getLl('Title', new Array(this.sfObject.pluralHumanName, this.sfObject.pluralUpHumanName), 'Demandes de permis'),
+        	title: this.getLl('Title', new Array(this.sfObject.pluralHumanName, this.sfObject.pluralUpHumanName), 'Demande de permis (ou absence de demande)'),
 			store: store,
 						bbar: new Ext.PagingToolbar({
 		        pageSize: 15,
@@ -171,7 +171,7 @@ mmw.demandeEditorGridPanel = Ext.extend(mmw.EditorGridPanel, {
 		var scope = this;
 		this.sfObject = new mmw.sfDemandeObject;
 		Ext.apply(this, this.initialConfig, {
-			title: this.getLl('Title', new Array(this.sfObject.pluralHumanName, this.sfObject.pluralUpHumanName), 'Demandes de permis'),
+			title: this.getLl('Title', new Array(this.sfObject.pluralHumanName, this.sfObject.pluralUpHumanName), 'Demande de permis (ou absence de demande)'),
 			line: Ext.data.Record.create([{}]),
 			store: store,
 			bbar: new Ext.PagingToolbar({

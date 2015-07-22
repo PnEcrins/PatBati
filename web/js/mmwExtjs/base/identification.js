@@ -158,7 +158,7 @@ mmw.identificationGridFormPanel = Ext.extend(mmw.GridFormPanel, {
           lastQuery : ''
         }, {
           name : 'identification__lieu_dit',
-          fieldLabel : mmw.getI18nLabel('identification__lieu_dit', 'Lieu dit'),
+          fieldLabel : mmw.getI18nLabel('identification__lieu_dit', 'Lie-dit'),
           width : 325,
           itemId : 'identification__lieu_dit',
           allowBlank : true,
@@ -173,20 +173,22 @@ mmw.identificationGridFormPanel = Ext.extend(mmw.GridFormPanel, {
           maxLength : 20,
           xtype : 'textfield'
         }, {
-          name : 'identification__l2x',
-          fieldLabel : mmw.getI18nLabel('identification__l2x', 'Coordonnée X'),
+          name : 'identification__x',
+          fieldLabel : mmw.getI18nLabel('identification__x', 'Coordonnée X'),
           width : 250,
-          itemId : 'identification__l2x',
+          itemId : 'identification__x',
           allowBlank : true,
           xtype : 'textfield',
+          tooltip: 'Coordonnées en Lambert 93',
           vtype : 'num'
         }, {
-          name : 'identification__l2y',
-          fieldLabel : mmw.getI18nLabel('identification__l2y', 'Coordonnée Y'),
+          name : 'identification__y',
+          fieldLabel : mmw.getI18nLabel('identification__y', 'Coordonnée Y'),
           width : 250,
-          itemId : 'identification__l2y',
+          itemId : 'identification__y',
           allowBlank : true,
           xtype : 'textfield',
+          tooltip: 'Coordonnées en Lambert 93',
           vtype : 'num'
         }, {
           name : 'identification__altitude',
@@ -198,7 +200,7 @@ mmw.identificationGridFormPanel = Ext.extend(mmw.GridFormPanel, {
           vtype : 'num'
         }, {
           name : 'identification__denivelle',
-          fieldLabel : mmw.getI18nLabel('identification__denivelle', 'Dénivellé'),
+          fieldLabel : mmw.getI18nLabel('identification__denivelle', 'Dénivelé'),
           width : 250,
           itemId : 'identification__denivelle',
           allowBlank : true,
@@ -282,7 +284,7 @@ mmw.identificationGridFormPanel = Ext.extend(mmw.GridFormPanel, {
           lastQuery : ''
         }, {
           name : 'identification__pente',
-          fieldLabel : mmw.getI18nLabel('identification__pente', 'Pente (en degrés)'),
+          fieldLabel : mmw.getI18nLabel('identification__pente', 'Pente (en degré)'),
           width : 250,
           itemId : 'identification__pente',
           allowBlank : true,
@@ -574,18 +576,18 @@ mmw.identificationFormPanel = Ext.extend(mmw.FormPanel, {
           maxLength : 20,
           xtype : 'textfield'
         }, {
-          name : 'identification__l2x',
-          fieldLabel : mmw.getI18nLabel('identification__l2x', 'Coordonnée X'),
+          name : 'identification__x',
+          fieldLabel : mmw.getI18nLabel('identification__x', 'Coordonnée X'),
           width : 250,
-          itemId : 'identification__l2x',
+          itemId : 'identification__x',
           allowBlank : true,
           xtype : 'textfield',
           vtype : 'num'
         }, {
-          name : 'identification__l2y',
-          fieldLabel : mmw.getI18nLabel('identification__l2y', 'Coordonnée Y'),
+          name : 'identification__y',
+          fieldLabel : mmw.getI18nLabel('identification__y', 'Coordonnée Y'),
           width : 250,
-          itemId : 'identification__l2y',
+          itemId : 'identification__y',
           allowBlank : true,
           xtype : 'textfield',
           vtype : 'num'
@@ -599,7 +601,7 @@ mmw.identificationFormPanel = Ext.extend(mmw.FormPanel, {
           vtype : 'num'
         }, {
           name : 'identification__denivelle',
-          fieldLabel : mmw.getI18nLabel('identification__denivelle', 'Dénivellé'),
+          fieldLabel : mmw.getI18nLabel('identification__denivelle', 'Dénivelé'),
           width : 250,
           itemId : 'identification__denivelle',
           allowBlank : true,
@@ -683,7 +685,7 @@ mmw.identificationFormPanel = Ext.extend(mmw.FormPanel, {
           lastQuery : ''
         }, {
           name : 'identification__pente',
-          fieldLabel : mmw.getI18nLabel('identification__pente', 'Pente (en degrés)'),
+          fieldLabel : mmw.getI18nLabel('identification__pente', 'Pente (en degré)'),
           width : 250,
           itemId : 'identification__pente',
           allowBlank : true,

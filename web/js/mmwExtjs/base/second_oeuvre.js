@@ -7,7 +7,8 @@ mmw.second_oeuvreGridFormPanel = Ext.extend(mmw.GridFormPanel,{
 	
 		this.sfObject = new mmw.sfSecond_oeuvreObject;
 		
-		this.overrideGridConfig['title'] = this.overrideGridConfig['title'] || this.getLl('GridTitle', new Array(scope.sfObject.pluralHumanName, scope.sfObject.pluralUpHumanName));
+		// this.overrideGridConfig['title'] = this.overrideGridConfig['title'] || this.getLl('GridTitle', new Array(scope.sfObject.pluralHumanName, scope.sfObject.pluralUpHumanName));
+		this.overrideGridConfig['title'] = 'Liste des éléments';
 		this.overrideGridConfig['height'] = this.overrideGridConfig['height'] || 299;
 		this.overrideGridConfig['form'] = this.overrideGridConfig['form'] || this;
 		
@@ -225,7 +226,8 @@ mmw.second_oeuvreGridPanel = Ext.extend(mmw.GridPanel,{
 		var scope = this;
 		this.sfObject = mmw.baseSfSecond_oeuvreObject; 
         Ext.apply(this, this.initialConfig, {
-        	title: this.getLl('Title', new Array(this.sfObject.pluralHumanName, this.sfObject.pluralUpHumanName), 'Liste des éléments'),
+        	// title: this.getLl('Title', new Array(this.sfObject.pluralHumanName, this.sfObject.pluralUpHumanName), 'Liste des éléments'),
+        	title: 'Liste des éléments',
 			store: store,
 						bbar: new Ext.PagingToolbar({
 		        pageSize: 15,
@@ -251,7 +253,8 @@ mmw.second_oeuvreEditorGridPanel = Ext.extend(mmw.EditorGridPanel, {
 		var scope = this;
 		this.sfObject = new mmw.sfSecond_oeuvreObject;
 		Ext.apply(this, this.initialConfig, {
-			title: this.getLl('Title', new Array(this.sfObject.pluralHumanName, this.sfObject.pluralUpHumanName), 'Liste des éléments'),
+			// title: this.getLl('Title', new Array(this.sfObject.pluralHumanName, this.sfObject.pluralUpHumanName), 'Liste des éléments'),
+			title: 'Liste des éléments',
 			line: Ext.data.Record.create([{}]),
 			store: store,
 			bbar: new Ext.PagingToolbar({
