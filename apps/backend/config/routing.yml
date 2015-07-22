@@ -357,14 +357,6 @@ bib_canton:
     column:               codecanton
     with_wildcard_routes: true
 
-login:
-  url:   /login
-  param: { module: security, action: login }
-
-logout:
-  url:   /logout
-  param: { module: security, action: logout }
-
 summary:
   url:   /summary/:id
   param: { module: identification, action: summary }
@@ -385,6 +377,19 @@ export_complete:
   requirements:
     id: \d+
     sf_method: [get]
+
+#règles de sécurité ( login, logout, .. )
+login:
+  url:   /login
+  param: { module: security, action: login }
+
+logout:
+  url:   /logout
+  param: { module: security, action: logout }
+
+credentials:
+  url:   /credentials
+  param: { module: security, action: credentials }
 
 # default rules
 homepage:

@@ -115,6 +115,10 @@ Ext.ux.mmwMultiselect = Ext.extend(Ext.form.Field,  {
     
     // private
     initComponent: function(){
+        if(!mmw.hasCredential('save')) {
+          this.draggable = false;
+        }
+      
         Ext.ux.mmwMultiselect.superclass.initComponent.call(this);
         
         if(Ext.isArray(this.store)){

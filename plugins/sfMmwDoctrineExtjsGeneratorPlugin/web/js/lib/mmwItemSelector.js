@@ -35,6 +35,7 @@ Ext.ux.mmwItemSelector = Ext.extend(Ext.form.Field,  {
 	i18nNameSpace: mmw.i18nNameSpace('MultiSelect'),
 	
     hideNavIcons:false,
+    disabled: false,
     imagePath:"js/mmwExtjs/extjs3_0/ux/images/",
     iconUp:"up2.gif",
     iconDown:"down2.gif",
@@ -42,16 +43,8 @@ Ext.ux.mmwItemSelector = Ext.extend(Ext.form.Field,  {
     iconRight:"right2.gif",
     iconTop:"top2.gif",
     iconBottom:"bottom2.gif",
-// DEMO
-//    drawUpIcon:true,
-//    drawDownIcon:true,
-// FIN DEMO
     drawLeftIcon:true,
     drawRightIcon:true,
-// DEMO
-//    drawTopIcon:true,
-//    drawBotIcon:true,
-// FIN DEMO
     delimiter:',',
     bodyStyle:null,
     border:false,
@@ -62,7 +55,9 @@ Ext.ux.mmwItemSelector = Ext.extend(Ext.form.Field,  {
     multiselects:[{},{}],
 
     initComponent: function(){
-
+      if(!mmw.hasCredential('save')) {
+        this.hideNavIcons = true;
+      }
 		this.valueField = this.store.sfObject.keyField;
 		this.displayField = this.store.sfObject.displayField;
 		if (typeof(this.width) == 'undefined') {
@@ -399,6 +394,10 @@ Ext.ux.mmwItemSelector = Ext.extend(Ext.form.Field,  {
     },
 
     onRowDblClick : function(vw, index, node, e) {
+      if(!mmw.hasCredential('save')) {
+        return;
+      }
+      
         if (vw == this.toMultiselect.view){
             this.toFrom();
         } else if (vw == this.fromMultiselect.view) {

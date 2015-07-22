@@ -5,8 +5,6 @@
  *
  * @package    patrimoine_bati
  * @subpackage security
- * @author     Your name here
- * @version    SVN: $Id: actions.class.php 12479 2008-10-31 10:54:40Z fabien $
  */
 class securityActions extends sfActions {
   public function executeLogin($request) {
@@ -43,6 +41,17 @@ class securityActions extends sfActions {
     $user->setAuthenticated(false);
     $user->clearCredentials();
     $this->redirect('@login');
+  }
+
+  public function executeCredentials() {
+    $user = $this->getUser();
+    $credentials = array('credentials' => array(
+        'save' => $user->hasCredential('save'),
+        'admin' => $user->hasCredential('admin')
+      ));
+    $this->renderText(json_encode($credentials));
+    $this->getResponse()->setHttpHeader('Content-type', 'application/json');
+    return sfView::NONE;
   }
 
 }

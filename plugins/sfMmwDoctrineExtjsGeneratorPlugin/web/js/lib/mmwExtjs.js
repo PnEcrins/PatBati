@@ -1,6 +1,32 @@
 Ext.namespace('mmw');
 Ext.namespace('mmw.util');
-  
+
+var appCredentials = null;
+Ext.apply(mmw, {
+    getAndSetCredentials: function() {
+      Ext.Ajax.request({
+        async : false,
+        url : './credentials',
+        success : function(response) {
+          var x = Ext.decode(response.responseText);
+          appCredentials = x.credentials;
+        },
+        failure : function(e) {
+          console.warn('failure in getAndSetCredentials %o',e);
+        }
+      });
+    },
+    
+    hasCredential: function(credential) {
+      if (appCredentials === null) {
+        mmw.getAndSetCredentials();
+      }
+      return appCredentials[credential];
+
+    }
+});
+
+
 Ext.override(Ext.form.Action.Load, {
     success: function(response){
         var result = this.processResponse(response);
@@ -23,7 +49,7 @@ Ext.lib.Ajax.onStatus([401], function() {
  * FUNCTIONS LIST *
  ******************/
 mmw.showAuthenticationBox = function() {
-	document.location.href = 'sfGuardAuth/signin';
+	document.location.href = './login';
 	
 	/*************
 	 * LOGIN BOX *
@@ -86,7 +112,7 @@ mmw.showAuthenticationBox = function() {
 //	}
 //	
 //	mmw.loginWindow.show();
-}
+};
 
 mmw.errorlog = function(error_msg, error_lvl) {
     if ((typeof(mmw_debug_mode) == 'undefined') || !((mmw_debug_mode == true) || (mmw_debug_mode == 1) || (mmw_debug_mode == 'on'))) {
@@ -124,7 +150,7 @@ mmw.errorlog = function(error_msg, error_lvl) {
     else {
         alert(completeMsg);
     }
-}
+};
 
 mmw.i18nNameSpace = function(nameSpace, inheritance) {
 	if (!(Ext.isObject(mmw.i18nNameSpacesInheritances))) {
@@ -134,7 +160,7 @@ mmw.i18nNameSpace = function(nameSpace, inheritance) {
 	mmw.i18nNameSpacesInheritances[nameSpace] = inheritance || false;
 	
 	return nameSpace;
-}
+};
 
 mmw.getLl = function(nameSpace, i18nKey, replacementValues, otherText, inheritanceFirst){
     var text = '';
@@ -177,19 +203,19 @@ mmw.getLl = function(nameSpace, i18nKey, replacementValues, otherText, inheritan
     }
     
     return text;
-}
+};
 
 mmw.getI18nLabel = function(fieldName, fieldLabel, replacementValues) {
-    return mmw.getLl('FieldsLabels', fieldName, replacementValues, (typeof(fieldLabel) != 'undefined') ? fieldLabel : null)
-}
+    return mmw.getLl('FieldsLabels', fieldName, replacementValues, (typeof(fieldLabel) != 'undefined') ? fieldLabel : null);
+};
 
 mmw.getI18nColumnHeader = function(columnName, columnHeader) {
     return mmw.getLl('ColumnsHeaders', columnName, new Array(), (typeof(columnHeader) != 'undefined') ? columnHeader : null, true);
-}
+};
 
 mmw.getI18nGeneral = function(i18nKey, otherText) {
-    return mmw.getLl('GeneralText', i18nKey, new Array(), otherText)
-}
+    return mmw.getLl('GeneralText', i18nKey, new Array(), otherText);
+};
 /*************************
  * END OF FUNCTIONS LIST *
  *************************/
@@ -204,7 +230,7 @@ mmw.util.ucfirst = function(str) {
     }
     
     return str;
-}
+};
 
 mmw.util.in_array = function(needle, collection, strict){
     if (Ext.isArray(collection)) {
@@ -231,7 +257,7 @@ mmw.util.in_array = function(needle, collection, strict){
 	}
     
     return false;
-}
+};
 
 mmw.util.formatRetrievedStoresData = function(storesData){
     var formattedData = {};
@@ -405,7 +431,7 @@ mmw.sfObject.prototype = {
     getKeyField: function(){
         return this.name + '__' + this.keyField;
     },
-}
+};
 
 /*
  * Basic mmw Form Panel Class
@@ -530,18 +556,13 @@ mmw.FormPanel = Ext.extend(Ext.FormPanel, {
                 // set credentials
                 scope.credentials = a.result.credentials;  
                 
-                if(!scope.hasCredential('save')) {
+                if(!mmw.hasCredential('save')) {
 					saveButton.hide();
 					scope.doLayout();
 				};
             }
         });
     },
-    
-    hasCredential: function(credential) {
-    	return this.credentials[credential];
-    },
-    
 	formProcessLoad: function(result, scope) {
 		// If a function is passed in parameter, we execute it
         if (Ext.isFunction(this.beforeSetStoresAndValuesFunction)) {
@@ -563,7 +584,19 @@ mmw.FormPanel = Ext.extend(Ext.FormPanel, {
             }
         }
 		
-        scope.enable();
+		    scope.enable();
+		    if(!mmw.hasCredential('save')){
+          Ext.each(scope.findByType('field'), function(item){
+            item.disable();
+            if(Ext.isFunction(item.setHideTrigger)){
+              item.setHideTrigger(true);
+            }
+            
+            if(item.button && Ext.isFunction(item.button.hide)){
+              item.button.hide();
+            }
+          });
+        }
 
         // If a function is passed in parameter, we execute it
         if (Ext.isFunction(this.afterLoadFunction)) {
@@ -672,11 +705,11 @@ mmw.FormPanel = Ext.extend(Ext.FormPanel, {
 								}
 							}
 							else {
-								mmw.errorlog('A field to override hasn\'t a itemId in the itemsList ' + itemsListIndex + '.', 2)
+								mmw.errorlog('A field to override hasn\'t a itemId in the itemsList ' + itemsListIndex + '.', 2);
 							}
 						}
 						else {
-							mmw.errorlog('A field to override hasn\'t been defined correctly in the itemsList ' + itemsListIndex + ' (it\'s not a javascript object).', 2)
+							mmw.errorlog('A field to override hasn\'t been defined correctly in the itemsList ' + itemsListIndex + ' (it\'s not a javascript object).', 2);
 						}
 					}
 				}
@@ -721,7 +754,7 @@ mmw.FormPanel = Ext.extend(Ext.FormPanel, {
                     itemId: field.itemId,
                     displayField: field.displayField,
 					
-                }
+                };
 				
 				if (fieldsetMode) {
 					items.push(pFKConfig);
@@ -950,7 +983,7 @@ mmw.FormPanel = Ext.extend(Ext.FormPanel, {
         if (a && a.result) {
 			Ext.MessageBox.alert(this.getLl('SaveErrorTitle'), this.getLl('SaveErrorMsg'));
             
-			mmw.errorlog(this.getLl('SaveErrorMsg'), 1)
+			mmw.errorlog(this.getLl('SaveErrorMsg'), 1);
             mmw.errorlog(a.result.errors, 1);
         }
         else {
@@ -1045,44 +1078,25 @@ mmw.GridPanel = Ext.extend(Ext.grid.GridPanel, {
 //			this.enable();
 //		}, this);
     },
-    
-    getAndSetCredentials: function(grid) {
-      Ext.Ajax.request({
-        async : false,
-        url : grid.getStore().sfObject.url + '/getCredentials',
-        success : function(response) {
-          var x = Ext.decode(response.responseText);
-          grid.credentials = x.credentials;
-        },
-        failure : function(e) {
-          console.warn('failure in getAndSetCredentials %o',e);
-        }
-      });
-    },
-    
-    hasCredential: function(credential) {
-      if (Ext.isEmpty(this.credentials)) {
-        this.getAndSetCredentials(this);
-      }
-      return this.credentials[credential];
-
-    },
-    
     getLl: function(i18nKey, replacementValues, otherText){
         return mmw.getLl(this.i18nNameSpace, i18nKey, replacementValues, otherText);
     },
     
     addInsertButton: function(handler){
-        var toolbar = this.getTopToolbar();
-        if (!handler) 
-            var handler = this.insertHandler;
-        
-        toolbar.add({
-			xtype: 'button',
-            scope: this,
-            text: this.getLl('NewButtonText'),
-            handler: handler
-        });
+      if (! mmw.hasCredential('save')) {
+        return;
+      }
+  
+      var toolbar = this.getTopToolbar();
+      if (!handler)
+        var handler = this.insertHandler;
+  
+      toolbar.add({
+        xtype : 'button',
+        scope : this,
+        text : this.getLl('NewButtonText'),
+        handler : handler
+      }); 
     },
     
     newLineFromForm: function(formValues, autoSelect){		
@@ -1140,17 +1154,20 @@ mmw.GridPanel = Ext.extend(Ext.grid.GridPanel, {
     },
 
     addDeleteButton: function(handler){
-        var toolbar = this.getTopToolbar();
-        if (!handler) {
-			handler = this.confirmDelete;
-		}
-        
-        toolbar.add({
-			xtype: 'button',
-            scope: this,
-            text: this.getLl('DeleteButtonText'),
-            handler: handler
-        });
+      if (! mmw.hasCredential('save')) {
+        return;
+      }
+      var toolbar = this.getTopToolbar();
+      if (!handler) {
+        handler = this.confirmDelete;
+      }
+  
+      toolbar.add({
+        xtype : 'button',
+        scope : this,
+        text : this.getLl('DeleteButtonText'),
+        handler : handler
+      }); 
     },
     
     confirmDelete: function(){
@@ -1326,24 +1343,31 @@ mmw.GridFormPanel = Ext.extend(mmw.FormPanel, {
     
     // Shortcut to this.grid.addInsertButton
     addInsertButton: function(handler){
-        if (!handler) 
-            var handler = this.insertHandler.createDelegate(this);
-        
-        this.grid.addInsertButton(handler);
+      if (! mmw.hasCredential('save')) {
+        return;
+      }
+      
+      if (!handler) {
+        var handler = this.insertHandler.createDelegate(this);
+      }
+  
+      this.grid.addInsertButton(handler); 
     },
     
     // Shortcut to this.grid.addDeleteButton
     addDeleteButton: function(handler){
-        if (handler) {
-            this.grid.addDeleteButton(handler);
-        }
-        else {
-            this.grid.addDeleteButton();
-        }
-        
-        this.grid.on('delete', function(){
-            this.afterDeleteSuccess(this.afterSubmitSuccess);
-        }, this);
+      if (! mmw.hasCredential('save')) {
+        return;
+      }
+      if (handler) {
+        this.grid.addDeleteButton(handler);
+      } else {
+        this.grid.addDeleteButton();
+      }
+  
+      this.grid.on('delete', function() {
+        this.afterDeleteSuccess(this.afterSubmitSuccess);
+      }, this); 
     },
 
     afterDeleteSuccess: function(afterSubmitSuccess){
@@ -1423,11 +1447,6 @@ mmw.GridFormPanel = Ext.extend(mmw.FormPanel, {
 	getGrid: function() {
 		return this.grid;
 	},
-	
-	hasCredential: function(credential) {
-		return this.grid.hasCredential(credential);
-	},
-	
     listeners: {
         beforerender: function(){
             // The gridform is disabled until the end of the loading
@@ -1453,29 +1472,33 @@ mmw.EditorGridPanel = Ext.extend(mmw.GridPanel, {
 	i18nNameSpace: mmw.i18nNameSpace('EditorGridPanel', 'GridPanel'),
 	
     initComponent: function(){
-        this.editor = new mmw.grid.RowEditor({
-            saveMode: 'remote'
-        });
-        Ext.apply(this, this.initialConfig, {
-            plugins: [this.editor],
-            insertHandler: this.newLine
-        });
-        
-        // Traitement de la principalForeignKey
-        pFKey = this.getPrincipalForeignKey();
-		
-        if (pFKey != null) {            
-            for (var key in this.columns) {
-                if ((this.columns[key].dataIndex == pFKey.completeName) && this.columns[key].editor) {
-                    this.columns[key].editor.allowBlank = true;
-//					var foundPFKey = true;
-                    break;
-                }
-            }
+      this.editor = new mmw.grid.RowEditor({
+        saveMode : 'remote'
+      });
+      var plugins = [];
+      if (mmw.hasCredential('save')) {
+        plugins.push(this.editor);
+      }
+      Ext.apply(this, this.initialConfig, {
+        plugins : plugins,
+        insertHandler : this.newLine
+      });
+  
+      // Traitement de la principalForeignKey
+      pFKey = this.getPrincipalForeignKey();
+  
+      if (pFKey != null) {
+        for (var key in this.columns) {
+          if ((this.columns[key].dataIndex == pFKey.completeName) && this.columns[key].editor) {
+            this.columns[key].editor.allowBlank = true;
+            //          var foundPFKey = true;
+            break;
+          }
         }
-        // Fin du traitement de la principalForeignKey
-		
-        mmw.EditorGridPanel.superclass.initComponent.call(this);
+      }
+      // Fin du traitement de la principalForeignKey
+  
+      mmw.EditorGridPanel.superclass.initComponent.call(this);
     },
     
     getLl: function(i18nKey, replacementValues, otherText){
