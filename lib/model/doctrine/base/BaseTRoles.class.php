@@ -51,20 +51,9 @@ abstract class BaseTRoles extends sfDoctrineRecord
              'type' => 'integer',
              'length' => 4,
              ));
-        $this->hasColumn('pne', 'integer', 1, array(
+        $this->hasColumn('pn', 'integer', 1, array(
              'type' => 'integer',
              'length' => 1,
-             ));
-        $this->hasColumn('assermentes', 'integer', 1, array(
-             'type' => 'integer',
-             'length' => 1,
-             ));
-        $this->hasColumn('enposte', 'integer', 1, array(
-             'type' => 'integer',
-             'length' => 1,
-             ));
-        $this->hasColumn('dernieracces', 'date', null, array(
-             'type' => 'date',
              ));
         $this->hasColumn('session_appli', 'string', 50, array(
              'type' => 'string',
