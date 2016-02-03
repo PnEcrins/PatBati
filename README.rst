@@ -3,7 +3,7 @@ PATRIMOINE BATI
 
 Application web permettant de réaliser un inventaire détaillé du patrimoine bâti d'un territoire. 
 
-.. image :: docs/images/patbat-capture.jpg
+.. image :: doc/images/patbat-capture.jpg
 
 - Informations générales
 - Environnement
