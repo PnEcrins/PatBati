@@ -1,6 +1,9 @@
 PATRIMOINE BATI
 ===============
 
+En été 2025, une version 2 de cette base de données et cet outil a été développée en Python, Django : https://github.com/PnEcrins/Patrimoine-bati/.  
+Ce dépôt de la version 1 est ainsi archivé.
+
 Application web permettant de réaliser un inventaire détaillé du patrimoine bâti d'un territoire. 
 
 .. image :: doc/images/patbat-capture.jpg
